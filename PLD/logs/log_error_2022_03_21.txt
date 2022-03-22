@@ -1,0 +1,21 @@
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: La secuencia no contiene elementos
+FECHA: 21/03/2022 03:31:52 p. m.
+--------------------------------------------------------------------------------------------------------------------------------
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: La secuencia no contiene elementos
+FECHA: 21/03/2022 06:34:24 p. m.
+--------------------------------------------------------------------------------------------------------------------------------
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: El objeto que acepta valores Null debe tener un valor.
+FECHA: 21/03/2022 06:37:58 p. m.
+--------------------------------------------------------------------------------------------------------------------------------
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: El objeto que acepta valores Null debe tener un valor.
+FECHA: 21/03/2022 07:09:05 p. m.
+--------------------------------------------------------------------------------------------------------------------------------
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: La secuencia no contiene elementos
+FECHA: 21/03/2022 07:18:37 p. m.
+--------------------------------------------------------------------------------------------------------------------------------
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: Error de conversión al tipo de valor 'System.Decimal' porque el valor materializado es NULL. El parámetro genérico del tipo de resultado o la consulta deben usar un tipo que acepta valores NULL.
+FECHA: 21/03/2022 09:12:54 p. m.
+--------------------------------------------------------------------------------------------------------------------------------
+ERROR: -->Controlador: Día Método: EliminaDia :: --> EXCEPTION: Error de conversión al tipo de valor 'System.Decimal' porque el valor materializado es NULL. El parámetro genérico del tipo de resultado o la consulta deben usar un tipo que acepta valores NULL.
+FECHA: 21/03/2022 09:14:02 p. m.
+--------------------------------------------------------------------------------------------------------------------------------

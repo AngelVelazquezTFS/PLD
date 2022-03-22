@@ -1,0 +1,89 @@
+﻿
+@using PLD.Models
+@model ConfigViewModels
+
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-check"></i></span>
+        <h5>Configuración Alerta Prepagos</h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Valor</th>
+                    <th>Usuario Modificación</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody id="SetListPrepago">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="myAlert" class="modal hide">
+</div>
+
+<script type="text/javascript">
+    $.get("/Config/ListaPrepago", null, DataBind);
+    function DataBind(ListPrepago) {
+        var SetData = $("#SetListPrepago");
+        var ckeck = "";
+        for (var i = 0; i < ListPrepago.length; i++) {
+            if (ListPrepago[i].AML_NO_MONTO == 1) {
+                checkmonto = "<input type='checkbox' id='checkmonto' onchange='UpdatePrepago(" + ListPrepago[i].AML_ID_CVE + "," + ListPrepago[i].PAR_CL_VALOR + ")' checked='checked' />";
+            }
+            else {
+                checkmonto = "<input type='checkbox' id='checkmonto' onchange='UpdatePrepago(" + ListPrepago[i].AML_ID_CVE + "," + ListPrepago[i].PAR_CL_VALOR + ")' />";
+            }
+
+            if (ListPrepago[i].AML_FG_STATUS == 1) {
+                check = "<input type='checkbox' id='chkStatus' onchange='UpdateStatus(" + ListPrepago[i].AML_ID_CVE + "," + ListPrepago[i].PAR_CL_VALOR + ")' checked='checked' />";
+            }
+            else {
+                check = "<input type='checkbox' id='chkStatus' onchange='UpdateStatus(" + ListPrepago[i].AML_ID_CVE + "," + ListPrepago[i].PAR_CL_VALOR + ")' />";
+            }
+            var Data = "<tr class='gradeA'>" +
+                "<td style='text-align: center'>" + ListPrepago[i].AML_DS_DES + "</td>" +
+                "<td style='text-align: center'>" + checkmonto + "</td>" +
+                "<td style='text-align: center'>" + ListPrepago[i].USR_CL_CVEMOD + "</td>" +
+                "<td style='text-align: center'>" + check + "</td>" +
+                "</tr>";
+            SetData.append(Data);
+        }
+    }
+
+    var UpdateStatus = function (Id, valor) {
+        var idcheck = 0;
+        if ($('#chkStatus').is(":checked")) {
+            idcheck = 1;
+        }
+        var vcheck = $('#chkStatus').val();
+        $.ajax({
+            url: "@Url.Action("UpdEstatus", "Config")",
+            type: 'GET',
+            data: { Id: Id, valor: valor, idcheck: idcheck},
+            success: function (data) {
+                $('#myAlert').html(data);
+            }
+        });
+    }
+
+     var UpdatePrepago = function (Id, valor) {
+        var idcheck = 0;
+        if ($('#chkStatus').is(":checked")) {
+            idcheck = 1;
+        }
+        var vcheck = $('#chkStatus').val();
+        $.ajax({
+            url: "@Url.Action("UpdPrepago", "Config")",
+            type: 'GET',
+            data: { Id: Id, valor: valor, idcheck: idcheck},
+            success: function (data) {
+                $('#myAlert').html(data);
+            }
+        });
+    }
+</script>

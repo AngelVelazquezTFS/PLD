@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_ModelStoreContainer" CdmEntityContainer="DB_Entities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="DB_Model.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccesosWS">
+      <EntityTypeMapping TypeName="DB_Model.AccesosWS">
+        <MappingFragment StoreEntitySet="AccesosWS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="fec_alta" ColumnName="fec_alta" />
+          <ScalarProperty Name="reg_alta" ColumnName="reg_alta" />
+          <ScalarProperty Name="fec_baja" ColumnName="fec_baja" />
+          <ScalarProperty Name="reg_baja" ColumnName="reg_baja" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="DB_Model.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="DB_Model.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="DB_Model.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserRoles">
+      <EntityTypeMapping TypeName="DB_Model.AspNetUserRoles">
+        <MappingFragment StoreEntitySet="AspNetUserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+          <ScalarProperty Name="UsuarioAlta" ColumnName="UsuarioAlta" />
+          <ScalarProperty Name="UsuarioBaja" ColumnName="UsuarioBaja" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="DB_Model.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Materno" ColumnName="Materno" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="UsuarioAlta" ColumnName="UsuarioAlta" />
+          <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UsuarioBaja" ColumnName="UsuarioBaja" />
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+          <ScalarProperty Name="UltimoAcceso" ColumnName="UltimoAcceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CREMARK_PLANPISO_AML">
+      <EntityTypeMapping TypeName="DB_Model.CREMARK_PLANPISO_AML">
+        <MappingFragment StoreEntitySet="CREMARK_PLANPISO_AML">
+          <ScalarProperty Name="Id_RemarkPlan" ColumnName="Id_RemarkPlan" />
+          <ScalarProperty Name="Dealer" ColumnName="Dealer" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="FechaContitucion" ColumnName="FechaContitucion" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+          <ScalarProperty Name="GiroMercantil" ColumnName="GiroMercantil" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Ap_Paterno" ColumnName="Ap_Paterno" />
+          <ScalarProperty Name="Ap_Materno" ColumnName="Ap_Materno" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="RFC1" ColumnName="RFC1" />
+          <ScalarProperty Name="Curp" ColumnName="Curp" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="N_Exterior" ColumnName="N_Exterior" />
+          <ScalarProperty Name="N_Interior" ColumnName="N_Interior" />
+          <ScalarProperty Name="N_Telefono" ColumnName="N_Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Vin" ColumnName="Vin" />
+          <ScalarProperty Name="FechaDisposicion" ColumnName="FechaDisposicion" />
+          <ScalarProperty Name="MontoOperacion" ColumnName="MontoOperacion" />
+          <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="Remarketing_Plan" ColumnName="Remarketing_Plan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modulos">
+      <EntityTypeMapping TypeName="DB_Model.Modulos">
+        <MappingFragment StoreEntitySet="Modulos">
+          <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PasswordHistory">
+      <EntityTypeMapping TypeName="DB_Model.PasswordHistory">
+        <MappingFragment StoreEntitySet="PasswordHistory">
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permisos">
+      <EntityTypeMapping TypeName="DB_Model.Permisos">
+        <MappingFragment StoreEntitySet="Permisos">
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+          <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="EsMenu" ColumnName="EsMenu" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+          <ScalarProperty Name="AllUsers" ColumnName="AllUsers" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermisosRoles">
+      <EntityTypeMapping TypeName="DB_Model.PermisosRoles">
+        <MappingFragment StoreEntitySet="PermisosRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AccesoUsuario" FunctionName="DB_Model.Store.sp_AccesoUsuario" />
+    <FunctionImportMapping FunctionImportName="sp_MenuUsuario" FunctionName="DB_Model.Store.sp_MenuUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_Model.sp_MenuUsuario_Result">
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+          <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PasswordDec" FunctionName="DB_Model.Store.sp_PasswordDec" />
+    <FunctionImportMapping FunctionImportName="sp_PasswordEnc" FunctionName="DB_Model.Store.sp_PasswordEnc" />
+    <EntitySetMapping Name="KBITACORA_AML">
+      <EntityTypeMapping TypeName="DB_Model.KBITACORA_AML">
+        <MappingFragment StoreEntitySet="KBITACORA_AML">
+          <ScalarProperty Name="USR_CL_CVE" ColumnName="USR_CL_CVE" />
+          <ScalarProperty Name="BIT_DS_RESUMEN" ColumnName="BIT_DS_RESUMEN" />
+          <ScalarProperty Name="BIT_DS_DESCRIPCION" ColumnName="BIT_DS_DESCRIPCION" />
+          <ScalarProperty Name="PRM_FL_CVE" ColumnName="PRM_FL_CVE" />
+          <ScalarProperty Name="BIT_FE_FECHA" ColumnName="BIT_FE_FECHA" />
+          <ScalarProperty Name="BIT_FL_CVE" ColumnName="BIT_FL_CVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KCONFIG_AML">
+      <EntityTypeMapping TypeName="DB_Model.KCONFIG_AML">
+        <MappingFragment StoreEntitySet="KCONFIG_AML">
+          <ScalarProperty Name="AML_FE_MOD" ColumnName="AML_FE_MOD" />
+          <ScalarProperty Name="USR_CL_CVEMOD" ColumnName="USR_CL_CVEMOD" />
+          <ScalarProperty Name="AML_FE_ALTA" ColumnName="AML_FE_ALTA" />
+          <ScalarProperty Name="USR_CL_CVEALTA" ColumnName="USR_CL_CVEALTA" />
+          <ScalarProperty Name="AML_FG_STATUS" ColumnName="AML_FG_STATUS" />
+          <ScalarProperty Name="AML_DS_EMAIL" ColumnName="AML_DS_EMAIL" />
+          <ScalarProperty Name="AML_NO_MONTO" ColumnName="AML_NO_MONTO" />
+          <ScalarProperty Name="AML_DS_DES" ColumnName="AML_DS_DES" />
+          <ScalarProperty Name="PAR_CL_VALOR" ColumnName="PAR_CL_VALOR" />
+          <ScalarProperty Name="AML_ID_CVE" ColumnName="AML_ID_CVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerMatrizRiesgo" FunctionName="DB_Model.Store.ObtenerMatrizRiesgo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_Model.ObtenerMatrizRiesgo_Result">
+          <ScalarProperty Name="Elemento_Riesgo" ColumnName="Elemento_Riesgo" />
+          <ScalarProperty Name="Factor_Riesgo" ColumnName="Factor_Riesgo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Ponderacion_Indica" ColumnName="Ponderacion_Indica" />
+          <ScalarProperty Name="Ponderacion_Element" ColumnName="Ponderacion_Element" />
+          <ScalarProperty Name="Riesgo_Indicador" ColumnName="Riesgo_Indicador" />
+          <ScalarProperty Name="Valor_ponderado_Indi" ColumnName="Valor_ponderado_Indi" />
+          <ScalarProperty Name="Valor_ponderado_Element" ColumnName="Valor_ponderado_Element" />
+          <ScalarProperty Name="NivelRiesgo" ColumnName="NivelRiesgo" />
+          <ScalarProperty Name="ValorRiesgo" ColumnName="ValorRiesgo" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

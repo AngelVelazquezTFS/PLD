@@ -1,0 +1,6 @@
+ERROR: --> Register :: --> EXCEPTION: System.FormatException: No se puede reconocer la cadena como valor DateTime válido.
+   en System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   en System.Convert.ToDateTime(String value)
+   en PLD.Controllers.ConfigController.RegisterConfig(ConfigViewModels model) en C:\Users\EX_SANTOSH\OneDrive - TMNA\Documents\GitHub\PLD\PLD\Controllers\ConfigController.cs:línea 59
+FECHA: 14/03/2022 02:38:39 p. m.
+--------------------------------------------------------------------------------------------------------------------------------

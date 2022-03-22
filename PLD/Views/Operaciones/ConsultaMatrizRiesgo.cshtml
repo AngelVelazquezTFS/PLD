@@ -1,0 +1,29 @@
+﻿@using PLD.Models
+@model MatrizRiesgoModels
+<div id="content-header">
+    <div id="breadcrumb">
+    </div>
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            @Html.Partial("_VistaBusqueda", Model)
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="idMatriz">
+    @Html.Partial("_VistaListaDatos", Model)
+</div>
+
+<div class="container-fluid" id="idDetalle" style="display:none">
+    @Html.Partial("_VerDetalle", Model)
+</div>
+
+
+
+
+@*@Scripts.Render("~/bundles/jquerymaruti")
+    @Scripts.Render("~/bundles/bootstrapTest")*@

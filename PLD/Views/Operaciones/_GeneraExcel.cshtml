@@ -1,0 +1,19 @@
+﻿@using PLD.Models
+@model MatrizRiesgoModels
+
+
+@foreach (var item in Model.Lista_Solicitudes)
+{
+<form action="@Url.Action("DescargaExcel", "Operaciones")" method="post">
+    <input type="text" name="Solicitud" id="Solicitud" class="span9" value="@item.IdSolicitud" style="display:none;" />
+    @*<button type="submit" value="_GeneraReportesExcel" id="_GeneraReportesExcel" name="ButtonType" class="btn btn-primary">Descargar</button>*@
+<button type="submit" value="_GeneraReportesExcel" id="_GeneraReportesExcel" class="btn btn-success" title="Descargar">
+    <i class="icon-download"></i> Descargar
+</button>
+    @Html.HiddenFor(m => m.IdSolicitud)
+    @Html.HiddenFor(m => m.Rfc)
+    @Html.HiddenFor(m => m.FechaInicio)
+    @Html.HiddenFor(m => m.FechaFin)
+</form>
+}
+

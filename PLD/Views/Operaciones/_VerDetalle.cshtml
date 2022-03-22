@@ -1,0 +1,60 @@
+﻿@using PLD.Models
+@model MatrizRiesgoModels
+
+@if (Model.ListaMatriz != null)
+{
+    if (Model.ListaMatriz.Count > 0)
+    {
+      
+        <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <span class="icon"> <i class="icon-th"></i> </span>
+                            <h5>Matriz de Riesgo</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <table class="table table-bordered table-striped" id="IdTablaMatriz">
+                                <thead>
+                                    <tr>
+                                        <th>Elemento Riesgo</th>
+                                        <th>Factor Riesgo </th>
+                                        <th>Descripcion</th>
+                                        <th>Valor</th>
+                                        <th>Ponderacion Indica</th>
+                                        <th>Ponderacion Elemento</th>
+                                        <th>Riesgo Indicador</th>
+                                        <th>Valor Indica</th>
+                                        <th>Valor Elemento</th>
+                                    </tr>
+                                </thead>
+                                @for (int i = 0; i < Model.ListaMatriz.Count; i++)
+                                {
+                                    <tbody>
+
+                                        <tr class="odd gradeX">
+                                            <th> @Model.ListaMatriz[i].Elemento_Riesgo </th>
+                                            <th> @Model.ListaMatriz[i].Factor_Riesgo </th>
+                                            <th> @Model.ListaMatriz[i].Descripcion </th>
+                                            <th> @Model.ListaMatriz[i].Valor </th>
+                                            <th> @Model.ListaMatriz[i].Ponderacion_Indica </th>
+                                            <th> @Model.ListaMatriz[i].Ponderacion_Element </th>
+                                            <th> @Model.ListaMatriz[i].Riesgo_Indicador </th>
+                                            <th> @Model.ListaMatriz[i].Valor_Ponderacion_Indica </th>
+                                            <th> @Model.ListaMatriz[i].Valor_Ponderacion_Element </th>
+                                        </tr>
+
+                                    </tbody>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    }
+}
+
+
+
+

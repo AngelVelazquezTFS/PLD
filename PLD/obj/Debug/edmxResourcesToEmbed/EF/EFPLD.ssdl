@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccesosWS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="15" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="fec_alta" Type="datetime" />
+    <Property Name="reg_alta" Type="int" />
+    <Property Name="fec_baja" Type="datetime" />
+    <Property Name="reg_baja" Type="int" />
+    <Property Name="id_status" Type="int" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="FechaAlta" Type="datetime" />
+    <Property Name="FechaBaja" Type="datetime" />
+    <Property Name="UsuarioAlta" Type="int" />
+    <Property Name="UsuarioBaja" Type="int" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Materno" Type="nvarchar" MaxLength="40" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="IdStatus" Type="int" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="UsuarioAlta" Type="int" />
+    <Property Name="FechaAlta" Type="datetime" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UsuarioBaja" Type="int" />
+    <Property Name="FechaBaja" Type="datetime" />
+    <Property Name="UltimoAcceso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CREMARK_PLANPISO_AML">
+    <Key>
+      <PropertyRef Name="Id_RemarkPlan" />
+    </Key>
+    <Property Name="Id_RemarkPlan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dealer" Type="int" />
+    <Property Name="RazonSocial" Type="varchar" MaxLength="200" />
+    <Property Name="FechaContitucion" Type="varchar" MaxLength="25" />
+    <Property Name="RFC" Type="varchar" MaxLength="18" />
+    <Property Name="Nacionalidad" Type="varchar" MaxLength="10" />
+    <Property Name="GiroMercantil" Type="varchar" MaxLength="150" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Ap_Paterno" Type="varchar" MaxLength="100" />
+    <Property Name="Ap_Materno" Type="varchar" MaxLength="100" />
+    <Property Name="FechaNacimiento" Type="varchar" MaxLength="25" />
+    <Property Name="RFC1" Type="varchar" MaxLength="18" />
+    <Property Name="Curp" Type="varchar" MaxLength="15" />
+    <Property Name="CP" Type="int" />
+    <Property Name="Estado" Type="varchar" MaxLength="100" />
+    <Property Name="Municipio" Type="varchar" MaxLength="100" />
+    <Property Name="Colonia" Type="varchar" MaxLength="100" />
+    <Property Name="Calle" Type="varchar" MaxLength="200" />
+    <Property Name="N_Exterior" Type="varchar" MaxLength="30" />
+    <Property Name="N_Interior" Type="varchar" MaxLength="30" />
+    <Property Name="N_Telefono" Type="varchar" MaxLength="12" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="Vin" Type="varchar" MaxLength="20" />
+    <Property Name="FechaDisposicion" Type="varchar" MaxLength="25" />
+    <Property Name="MontoOperacion" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="Fecha_creacion" Type="varchar" MaxLength="25" />
+    <Property Name="Users" Type="varchar" MaxLength="80" />
+    <Property Name="Remarketing_Plan" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="KBITACORA_AML">
+    <Key>
+      <PropertyRef Name="BIT_FL_CVE" />
+    </Key>
+    <Property Name="BIT_FL_CVE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BIT_FE_FECHA" Type="datetime" Nullable="false" />
+    <Property Name="PRM_FL_CVE" Type="int" Nullable="false" />
+    <Property Name="BIT_DS_DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="BIT_DS_RESUMEN" Type="varchar" MaxLength="250" />
+    <Property Name="USR_CL_CVE" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KCONFIG_AML">
+    <Key>
+      <PropertyRef Name="AML_ID_CVE" />
+    </Key>
+    <Property Name="AML_ID_CVE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PAR_CL_VALOR" Type="int" />
+    <Property Name="AML_DS_DES" Type="varchar" MaxLength="50" />
+    <Property Name="AML_NO_MONTO" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AML_DS_EMAIL" Type="varchar" MaxLength="250" />
+    <Property Name="AML_FG_STATUS" Type="int" />
+    <Property Name="USR_CL_CVEALTA" Type="varchar" MaxLength="50" />
+    <Property Name="AML_FE_ALTA" Type="datetime" />
+    <Property Name="USR_CL_CVEMOD" Type="varchar" MaxLength="50" />
+    <Property Name="AML_FE_MOD" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Modulos">
+    <Key>
+      <PropertyRef Name="IdModulo" />
+    </Key>
+    <Property Name="IdModulo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PasswordHistory">
+    <Key>
+      <PropertyRef Name="PasswordHash" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="PasswordHash" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permisos">
+    <Key>
+      <PropertyRef Name="IdMenu" />
+    </Key>
+    <Property Name="IdMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdModulo" Type="int" Nullable="false" />
+    <Property Name="Accion" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Controlador" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="EsMenu" Type="bit" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="Nivel" Type="tinyint" />
+    <Property Name="IdPadre" Type="int" />
+    <Property Name="AllUsers" Type="bit" Nullable="false" />
+    <Property Name="Icon" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="PermisosRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMenu" Type="int" Nullable="false" />
+    <Property Name="IdRole" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AccesosWS_AspNetUsers_Alta">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="AccesosWS" Type="Self.AccesosWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccesosWS">
+        <PropertyRef Name="reg_alta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccesosWS_AspNetUsersBaja">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="AccesosWS" Type="Self.AccesosWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccesosWS">
+        <PropertyRef Name="reg_baja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PasswordHistory" Type="Self.PasswordHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PasswordHistory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SegPermisos_IdModulo">
+    <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulos">
+        <PropertyRef Name="IdModulo" />
+      </Principal>
+      <Dependent Role="Permisos">
+        <PropertyRef Name="IdModulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SegPermisos_IdPadre">
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="0..1" />
+    <End Role="Permisos1" Type="Self.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permisos">
+        <PropertyRef Name="IdMenu" />
+      </Principal>
+      <Dependent Role="Permisos1">
+        <PropertyRef Name="IdPadre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SegPermisosRoles_IdMenu">
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
+    <End Role="PermisosRoles" Type="Self.PermisosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permisos">
+        <PropertyRef Name="IdMenu" />
+      </Principal>
+      <Dependent Role="PermisosRoles">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SegPermisosRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+    <End Role="PermisosRoles" Type="Self.PermisosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosRoles">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ObtenerMatrizRiesgo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RFC" Type="varchar" Mode="In" />
+    <Parameter Name="IDSOLICITUD" Type="varchar" Mode="In" />
+    <Parameter Name="FECHA_INICIO" Type="date" Mode="In" />
+    <Parameter Name="FECHA_FIN" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_AccesoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+    <Parameter Name="Accion" Type="varchar" Mode="In" />
+    <Parameter Name="Controlador" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_MenuUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PasswordDec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PasswordCifrado" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_PasswordEnc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="DB_ModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccesosWS" EntityType="Self.AccesosWS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CREMARK_PLANPISO_AML" EntityType="Self.CREMARK_PLANPISO_AML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KBITACORA_AML" EntityType="Self.KBITACORA_AML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KCONFIG_AML" EntityType="Self.KCONFIG_AML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PasswordHistory" EntityType="Self.PasswordHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermisosRoles" EntityType="Self.PermisosRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AccesosWS_AspNetUsers_Alta" Association="Self.FK_AccesosWS_AspNetUsers_Alta">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AccesosWS" EntitySet="AccesosWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccesosWS_AspNetUsersBaja" Association="Self.FK_AccesosWS_AspNetUsersBaja">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AccesosWS" EntitySet="AccesosWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PasswordHistory" EntitySet="PasswordHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SegPermisos_IdModulo" Association="Self.FK_SegPermisos_IdModulo">
+      <End Role="Modulos" EntitySet="Modulos" />
+      <End Role="Permisos" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SegPermisos_IdPadre" Association="Self.FK_SegPermisos_IdPadre">
+      <End Role="Permisos" EntitySet="Permisos" />
+      <End Role="Permisos1" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SegPermisosRoles_IdMenu" Association="Self.FK_SegPermisosRoles_IdMenu">
+      <End Role="Permisos" EntitySet="Permisos" />
+      <End Role="PermisosRoles" EntitySet="PermisosRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SegPermisosRoles_RoleId" Association="Self.FK_SegPermisosRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="PermisosRoles" EntitySet="PermisosRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

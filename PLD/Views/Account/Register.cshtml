@@ -1,0 +1,104 @@
+﻿@using PLD.Models
+@model PLD.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<style>
+    .form-horizontal .controls {
+        margin-left: 150px !important;
+    }
+
+    .form-horizontal .control-label {
+        width: 130px !important;
+    }
+</style>
+
+<div>
+    @using (Ajax.BeginForm("Register", "Account", new AjaxOptions
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "mdlAlert",
+        InsertionMode = InsertionMode.Replace
+    }, new { @class = "form-horizontal", role = "form", id = "formRegistrar" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>@(string.IsNullOrEmpty(ViewBag.TitleRegEdit) ? "Registrar Usuario" : ViewBag.TitleRegEdit)</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <div class="control-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "control-label", name = "UserName", id = "UserName" })
+                    <div class="controls">
+                        @if (Model.Id == 0)
+                        {
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "span11" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "span11", @readonly = "readonly" })
+                        }
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.Nombre, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "span11" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.Paterno, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.Paterno, new { @class = "span11" })
+                    </div>
+                </div>
+                @*<div class="control-group">
+                    @Html.LabelFor(m => m.Materno, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.Materno, new { @class = "span11" })
+                    </div>
+                </div>*@
+                <div class="control-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "span11" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.IdStatus, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(m => m.IdStatus, new List<SelectListItem>() { new SelectListItem() { Value = "1", Text = "Activo" }, new SelectListItem() { Value = "2", Text = "Inactivo" } }, new { @class = "browser-default custom-select span11" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Rol Usuario</label>
+                    <div class="controls">
+                        @if (Model.SelectedRoles == null)
+                        {
+                            Model.SelectedRoles = SelectListModels.RolesUsuario(string.Empty);
+                        }
+                        @for (int i = 0; i < Model.SelectedRoles.Count(); i++)
+                        {
+                            <label>
+                                @Html.CheckBoxFor(m => Model.SelectedRoles[i].Selected, new { name = "radios", id = Model.SelectedRoles[i].Text })
+                                @Model.SelectedRoles[i].Text
+                                @Html.HiddenFor(m => Model.SelectedRoles[i].Text)
+                                @Html.HiddenFor(m => Model.SelectedRoles[i].Value)
+
+                            </label>
+                        }
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-danger">@((Model.Id == 0) ? "Registrar" : "Guardar Cambios")</button>
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Password)
+
+    }
+</div>

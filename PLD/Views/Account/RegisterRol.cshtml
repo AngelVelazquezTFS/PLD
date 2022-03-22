@@ -1,0 +1,88 @@
+﻿@using PLD.Models
+@model PLD.Models.RegisterRolViewModel
+@{
+    ViewBag.Title = "Registrar Rol";
+}
+
+<style>
+    .form-horizontal .controls {
+        margin-left: 150px !important;
+    }
+
+    .form-horizontal .control-label {
+        width: 130px !important;
+    }
+
+    .ul, ol {
+        padding: 0px !important;
+        margin: 0 0 0 0 !important;
+    }
+
+    .mark, mark {
+        padding: .2em !important;
+        background-color: #fcf8e3 !important;
+    }
+</style>
+
+
+<div class="form-horizontal">
+    @*@using (Ajax.BeginForm("RegisterRol", "Account", new AjaxOptions
+        {
+            HttpMethod = "Post",
+            UpdateTargetId = "content",
+            InsertionMode = InsertionMode.Replace
+        }, new { @class = "form-horizontal", role = "form", id = "formRegistrar" }))
+        {
+            @Html.AntiForgeryToken()*@
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>@(string.IsNullOrEmpty(ViewBag.TitleRegEdit) ? "Registrar Rol" : ViewBag.TitleRegEdit)</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <div class="control-group">
+                @Html.LabelFor(m => m.Name, new { @class = "control-label", id = "Name" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "span11", id = "desRol" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Rol Usuario</label>
+                <div class="controls">
+                    <div id="tree"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button id="btnSaveRol" type="submit" class="btn btn-danger">@((Model.Id == 0) ? "Registrar" : "Guardar Cambios")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var tree = $('#tree').tree({
+            primaryKey: 'id',
+            uiLibrary: 'bootstrap4',
+            dataSource: '/Account/GetPermisos',
+            checkboxes: true
+        });
+
+        $('#btnSaveRol').on('click', function () {
+            var checkedIds = tree.getCheckedNodes();
+            var descripcion = $('#desRol').val();
+            $.ajax({
+                type: "Post",
+                url: "/Account/SaveCheckedNodes",
+                data: { checkedIds: checkedIds, descripcion: descripcion },
+                success: function (result) {
+                    alert("Registro Actualizado");
+
+                }
+            })
+
+        });
+    });
+
+</script>
+
