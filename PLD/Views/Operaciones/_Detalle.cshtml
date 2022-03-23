@@ -4,17 +4,22 @@
 
 @foreach (var item in Model.Lista_Solicitudes)
 {
-    @*<form action="@Url.Action("VerDetalle", "Operaciones")" method="post" UpdateTargetId="idDetalle">*@
-    <form  id="iddetalles" UpdateTargetId="idDetalle" method="post">
-        <input type="text" name="Solicitud" id="Solicitud" class="span9" value="@item.IdSolicitud" style="display:none;" />
-        <button type="submit" value="_Detalle" id="_Detalle" class="btn btn-success" title="Ver detalle">
+<form id="iddetalles" UpdateTargetId="idDetalle" method="post">
+    <input type="text" name="Solicitud" id="Solicitud" class="span9" value="@item.IdSolicitud" style="display:none;" />
+    @*<button type="submit" value="_Detalle" id="_Detalle" class="btn btn-success" title="Ver detalle">
             <i class="icon-plus-sign"></i> Ver Detalle
-        </button>
-        @Html.HiddenFor(m => m.IdSolicitud)
-        @Html.HiddenFor(m => m.Rfc)
-        @Html.HiddenFor(m => m.FechaInicio)
-        @Html.HiddenFor(m => m.FechaFin)
-    </form>
+        </button>*@
+<button type="submit" class="btn btn-danger" value="_Detalle" id="_Detalle" title="Ver detalle" style="">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+    </svg>
+
+</button>
+    @Html.HiddenFor(m => m.IdSolicitud)
+    @Html.HiddenFor(m => m.Rfc)
+    @Html.HiddenFor(m => m.FechaInicio)
+    @Html.HiddenFor(m => m.FechaFin)
+</form>
 }
 <script>
     $(function () {

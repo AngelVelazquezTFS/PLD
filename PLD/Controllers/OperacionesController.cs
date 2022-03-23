@@ -138,6 +138,9 @@ namespace PLD.Controllers
         {
             ViewBag.Title = "Consulta Matriz Riesgo";
             MatrizRiesgoModels con = new MatrizRiesgoModels();
+            con.ValorFechaInicio= DateTime.Now;
+            con.ValorFechaFin = DateTime.Now;
+            con.ValorMaximo = DateTime.Now.AddDays(30);
             return PartialView(con);
         }
         [HttpPost]

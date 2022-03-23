@@ -3,71 +3,76 @@
 
 @if (Model.ListaMatriz != null)
 {
-        if (Model.ListaMatriz.Count == 0)
-        {
-            <div class="widget-box">
-                <div class="widget-title">
-                    <span class="icon">
-                        <i class="icon-info-sign"></i>
-                    </span>
-                    <h5>Busqueda de Matriz</h5>
-                </div>
-                <div class="widget-content nopadding">
-                    <form class="form-horizontal"
-                          method="post"
-                          UpdateTargetId="idMatriz"
-                          id="IdConsulta">
-                        <table class="table table-bordered table-striped" id="IdTablaMatriz">
-                            <thead>
-                            </thead>
-                            <tbody>
-                                <tr class="odd gradeX">
-                                    <th>
-                                        <div class="control-group">
-                                            <label class="control-label">Id Solicitud:</label>
-                                            <div class="controls">
-                                                <input type="text" name="IdSolicitud" id="IdSolicitud" class="span9" placeholder="Introduce Solicitud" />
-                                            </div>
-                                            <label class="control-label">Rfc:</label>
-                                            <div class="controls">
-                                                <input type="text" name="Rfc" id="Rfc" class="span9" placeholder="Introduce RFC" />
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th>
-                                        <div class="control-group">
-                                            <label class="control-label">Fecha Inicio:</label>
-                                            <div class="controls">
-                                                <div data-date="01-01-1900" class="input-append date datepicker">
-                                                    <input type="text" value="01-01-1900" data-date-format="mm-dd-yyyy" id="FechaInicio" name="FechaInicio" class="span12" />
-                                                    <span class="add-on"><i class="icon-th"></i></span>
-                                                </div>
-                                            </div>
-                                            <label class="control-label">Fecha Fin:</label>
-                                            <div class="controls">
-                                                <div data-date="01-01-1900" class="input-append date datepicker">
-                                                    <input type="text" value="01-01-1900" data-date-format="mm-dd-yyyy" id="FechaFin" name="FechaFin" class="span12" />
-                                                    <span class="add-on"><i class="icon-th"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-danger" title="Search">
-                                <i class="icon-search"></i> Buscar
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
+    if (Model.ListaMatriz.Count == 0)
+    {
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-info-sign"></i>
+                </span>
+                <h5>Busqueda de Matriz</h5>
             </div>
-        }
+            <div class="widget-content nopadding">
+                <form class="form-horizontal"
+                      method="post"
+                      UpdateTargetId="idMatriz"
+                      id="IdConsulta">
+                    <table class="table table-bordered table-striped" id="IdTablaMatriz">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr class="odd gradeX">
+                                <th>
+                                    <div class="control-group">
+                                        <label class="control-label">Id Solicitud:</label>
+                                        <div class="controls">
+                                            <input type="text" name="IdSolicitud" id="IdSolicitud" class="span9" placeholder="Introduce Solicitud" />
+                                        </div>
+                                        <label class="control-label">Rfc:</label>
+                                        <div class="controls">
+                                            <input type="text" name="Rfc" id="Rfc" class="span9" placeholder="Introduce RFC" />
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="control-group">
+                                        <label class="control-label">Fecha de Inicio:</label>
+                                        <div class="span2 col-md-1">
+                                            <div class="overflow-x:auto;">
+                                                <div>
+                                                    <input input type="date" id="FechaInicio" name="FechaInicio" value="@Model.ValorFechaInicio.ToString("yyyy-MM-dd")" min="2018-01-01" max="2022-03-31" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Fecha de Inicio:</label>
+                                        <div class="span2 col-md-1">
+                                            <div class="overflow-x:auto;">
+                                                <div>
+                                                    <input type="date" id="FechaFin" name="FechaFin" value="@Model.ValorFechaFin.ToString("yyyy-MM-dd")" min="2018-01-01" max="@Model.ValorMaximo.ToString("yyyyy-MM-dd")" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-danger" title="Search">
+                            <i class="icon-search"></i> Buscar
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    }
 }
 
-        <script>
+<script>
         $(function () {
             $("#IdConsulta").on("submit", function (e) {
                 e.preventDefault();
@@ -100,6 +105,6 @@
             });
         });
 
-        </script>
+</script>
 
 

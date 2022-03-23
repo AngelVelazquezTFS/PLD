@@ -133,6 +133,9 @@ namespace PLD.Models
         public string Solicitud { get; set; }
         public string FechaInicio { get; set; }
         public string FechaFin { get; set; }
+        public DateTime ValorFechaInicio { get; set; }
+        public DateTime ValorFechaFin { get; set; }
+        public DateTime ValorMaximo { get; set; }
         public List<ListaParametrosMatriz> ListaMatriz = new List<ListaParametrosMatriz>();
 
         public List<ListaSolicitudes> Lista_Solicitudes = new List<ListaSolicitudes>();
