@@ -196,6 +196,9 @@
     <Compile Include="EF\AccesosWS.cs">
       <DependentUpon>EFPLD.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Asignacion_Modulos.cs">
+      <DependentUpon>EFPLD.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\AspNetRoles.cs">
       <DependentUpon>EFPLD.tt</DependentUpon>
     </Compile>
@@ -251,6 +254,12 @@
       <DependentUpon>EFPLD.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\PermisosRoles.cs">
+      <DependentUpon>EFPLD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_MenuAsignacion_Result.cs">
+      <DependentUpon>EFPLD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_MenuUsuarios_Result.cs">
       <DependentUpon>EFPLD.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\sp_MenuUsuario_Result.cs">

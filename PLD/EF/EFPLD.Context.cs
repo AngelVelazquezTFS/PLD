@@ -41,6 +41,7 @@ namespace PLD.EF
         public virtual DbSet<PermisosRoles> PermisosRoles { get; set; }
         public virtual DbSet<KBITACORA_AML> KBITACORA_AML { get; set; }
         public virtual DbSet<KCONFIG_AML> KCONFIG_AML { get; set; }
+        public virtual DbSet<Asignacion_Modulos> Asignacion_Modulos { get; set; }
     
         public virtual ObjectResult<Nullable<bool>> sp_AccesoUsuario(Nullable<int> idUsuario, string accion, string controlador)
         {
@@ -105,6 +106,24 @@ namespace PLD.EF
                 new ObjectParameter("FECHA_FIN", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerMatrizRiesgo_Result>("ObtenerMatrizRiesgo", rFCParameter, iDSOLICITUDParameter, fECHA_INICIOParameter, fECHA_FINParameter);
+        }
+    
+        public virtual ObjectResult<sp_MenuAsignacion_Result> sp_MenuAsignacion(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MenuAsignacion_Result>("sp_MenuAsignacion", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_MenuUsuarios_Result> sp_MenuUsuarios(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MenuUsuarios_Result>("sp_MenuUsuarios", idUsuarioParameter);
         }
     }
 }

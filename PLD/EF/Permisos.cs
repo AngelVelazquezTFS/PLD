@@ -19,6 +19,7 @@ namespace PLD.EF
         {
             this.Permisos1 = new HashSet<Permisos>();
             this.PermisosRoles = new HashSet<PermisosRoles>();
+            this.Asignacion_Modulos = new HashSet<Asignacion_Modulos>();
         }
     
         public int IdMenu { get; set; }
@@ -40,5 +41,7 @@ namespace PLD.EF
         public virtual Permisos Permisos2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PermisosRoles> PermisosRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Asignacion_Modulos> Asignacion_Modulos { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace PLD.EF
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
             this.AspNetUserRoles = new HashSet<AspNetUserRoles>();
             this.PasswordHistory = new HashSet<PasswordHistory>();
+            this.Asignacion_Modulos = new HashSet<Asignacion_Modulos>();
         }
     
         public int Id { get; set; }
@@ -59,5 +60,7 @@ namespace PLD.EF
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PasswordHistory> PasswordHistory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Asignacion_Modulos> Asignacion_Modulos { get; set; }
     }
 }

@@ -237,5 +237,43 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="Asignacion_Modulos">
+      <EntityTypeMapping TypeName="DB_Model.Asignacion_Modulos">
+        <MappingFragment StoreEntitySet="Asignacion_Modulos">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+          <ScalarProperty Name="Id_Asignacion" ColumnName="Id_Asignacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_MenuAsignacion" FunctionName="DB_Model.Store.sp_MenuAsignacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_Model.sp_MenuAsignacion_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Nombre_usuario" ColumnName="Nombre_usuario" />
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdMenu_Padre" ColumnName="IdMenu_Padre" />
+          <ScalarProperty Name="Nombre_Padre" ColumnName="Nombre_Padre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_MenuUsuarios" FunctionName="DB_Model.Store.sp_MenuUsuarios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_Model.sp_MenuUsuarios_Result">
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+          <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

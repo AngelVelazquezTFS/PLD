@@ -28,6 +28,15 @@
           <Property Name="reg_baja" Type="int" />
           <Property Name="id_status" Type="int" />
         </EntityType>
+        <EntityType Name="Asignacion_Modulos">
+          <Key>
+            <PropertyRef Name="Id_Asignacion" />
+          </Key>
+          <Property Name="Id_Asignacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMenu" Type="int" />
+          <Property Name="Id_Usuario" Type="int" />
+          <Property Name="Username" Type="varchar" MaxLength="80" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -196,6 +205,30 @@
           <Property Name="IdRole" Type="int" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Asignacio__Id_Us__1E305893">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Asignacion_Modulos" Type="Self.Asignacion_Modulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Asignacion_Modulos">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asignacio__IdMen__1D3C345A">
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="0..1" />
+          <End Role="Asignacion_Modulos" Type="Self.Asignacion_Modulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="IdMenu" />
+            </Principal>
+            <Dependent Role="Asignacion_Modulos">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AccesosWS_AspNetUsers_Alta">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="AccesosWS" Type="Self.AccesosWS" Multiplicity="*" />
@@ -290,30 +323,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SegPermisos_IdModulo">
-          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
-          <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulos">
-              <PropertyRef Name="IdModulo" />
-            </Principal>
-            <Dependent Role="Permisos">
-              <PropertyRef Name="IdModulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SegPermisos_IdPadre">
-          <End Role="Permisos" Type="Self.Permisos" Multiplicity="0..1" />
-          <End Role="Permisos1" Type="Self.Permisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Permisos">
-              <PropertyRef Name="IdMenu" />
-            </Principal>
-            <Dependent Role="Permisos1">
-              <PropertyRef Name="IdPadre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SegPermisosRoles_IdMenu">
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
           <End Role="PermisosRoles" Type="Self.PermisosRoles" Multiplicity="*" />
@@ -349,7 +358,13 @@
           <Parameter Name="Accion" Type="varchar" Mode="In" />
           <Parameter Name="Controlador" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_MenuAsignacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_MenuUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_MenuUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_PasswordDec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -361,6 +376,7 @@
         <EntityContainer Name="DB_ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccesosWS" EntityType="Self.AccesosWS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asignacion_Modulos" EntityType="Self.Asignacion_Modulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -373,6 +389,14 @@
           <EntitySet Name="PasswordHistory" EntityType="Self.PasswordHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PermisosRoles" EntityType="Self.PermisosRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Asignacio__Id_Us__1E305893" Association="Self.FK__Asignacio__Id_Us__1E305893">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Asignacion_Modulos" EntitySet="Asignacion_Modulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asignacio__IdMen__1D3C345A" Association="Self.FK__Asignacio__IdMen__1D3C345A">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="Asignacion_Modulos" EntitySet="Asignacion_Modulos" />
+          </AssociationSet>
           <AssociationSet Name="FK_AccesosWS_AspNetUsers_Alta" Association="Self.FK_AccesosWS_AspNetUsers_Alta">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AccesosWS" EntitySet="AccesosWS" />
@@ -400,14 +424,6 @@
           <AssociationSet Name="FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="PasswordHistory" EntitySet="PasswordHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SegPermisos_IdModulo" Association="Self.FK_SegPermisos_IdModulo">
-            <End Role="Modulos" EntitySet="Modulos" />
-            <End Role="Permisos" EntitySet="Permisos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SegPermisos_IdPadre" Association="Self.FK_SegPermisos_IdPadre">
-            <End Role="Permisos" EntitySet="Permisos" />
-            <End Role="Permisos1" EntitySet="Permisos" />
           </AssociationSet>
           <AssociationSet Name="FK_SegPermisosRoles_IdMenu" Association="Self.FK_SegPermisosRoles_IdMenu">
             <End Role="Permisos" EntitySet="Permisos" />
@@ -524,6 +540,7 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
           <NavigationProperty Name="PasswordHistory" Relationship="Self.FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="PasswordHistory" />
+          <NavigationProperty Name="Asignacion_Modulos" Relationship="DB_Model.FK__Asignacio__Id_Us__1E305893" FromRole="AspNetUsers" ToRole="Asignacion_Modulos" />
         </EntityType>
         <EntityType Name="CREMARK_PLANPISO_AML">
           <Key>
@@ -597,6 +614,7 @@
           <NavigationProperty Name="Permisos1" Relationship="Self.FK_SegPermisos_IdPadre" FromRole="Permisos" ToRole="Permisos1" />
           <NavigationProperty Name="Permisos2" Relationship="Self.FK_SegPermisos_IdPadre" FromRole="Permisos1" ToRole="Permisos" />
           <NavigationProperty Name="PermisosRoles" Relationship="Self.FK_SegPermisosRoles_IdMenu" FromRole="Permisos" ToRole="PermisosRoles" />
+          <NavigationProperty Name="Asignacion_Modulos" Relationship="DB_Model.FK__Asignacio__IdMen__1D3C345A" FromRole="Permisos" ToRole="Asignacion_Modulos" />
         </EntityType>
         <EntityType Name="PermisosRoles">
           <Key>
@@ -830,6 +848,21 @@
             <Parameter Name="FECHA_INICIO" Mode="In" Type="DateTime" />
             <Parameter Name="FECHA_FIN" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="Asignacion_Modulos" EntityType="DB_Model.Asignacion_Modulos" />
+          <AssociationSet Name="FK__Asignacio__Id_Us__1E305893" Association="DB_Model.FK__Asignacio__Id_Us__1E305893">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Asignacion_Modulos" EntitySet="Asignacion_Modulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asignacio__IdMen__1D3C345A" Association="DB_Model.FK__Asignacio__IdMen__1D3C345A">
+            <End Role="Permisos" EntitySet="Permisos" />
+            <End Role="Asignacion_Modulos" EntitySet="Asignacion_Modulos" />
+          </AssociationSet>
+          <FunctionImport Name="sp_MenuAsignacion" ReturnType="Collection(DB_Model.sp_MenuAsignacion_Result)">
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MenuUsuarios" ReturnType="Collection(DB_Model.sp_MenuUsuarios_Result)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_MenuUsuario_Result">
           <Property Type="Int32" Name="IdMenu" Nullable="false" />
@@ -881,6 +914,61 @@
           <Property Type="String" Name="ValorRiesgo" Nullable="true" MaxLength="40" />
           <Property Type="String" Name="RFC" Nullable="true" MaxLength="15" />
           <Property Type="String" Name="IdSolicitud" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <EntityType Name="Asignacion_Modulos">
+          <Key>
+            <PropertyRef Name="Id_Asignacion" />
+          </Key>
+          <Property Name="Id_Asignacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMenu" Type="Int32" />
+          <Property Name="Id_Usuario" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DB_Model.FK__Asignacio__Id_Us__1E305893" FromRole="Asignacion_Modulos" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Permisos" Relationship="DB_Model.FK__Asignacio__IdMen__1D3C345A" FromRole="Asignacion_Modulos" ToRole="Permisos" />
+        </EntityType>
+        <Association Name="FK__Asignacio__Id_Us__1E305893">
+          <End Type="DB_Model.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="DB_Model.Asignacion_Modulos" Role="Asignacion_Modulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Asignacion_Modulos">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asignacio__IdMen__1D3C345A">
+          <End Type="DB_Model.Permisos" Role="Permisos" Multiplicity="0..1" />
+          <End Type="DB_Model.Asignacion_Modulos" Role="Asignacion_Modulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permisos">
+              <PropertyRef Name="IdMenu" />
+            </Principal>
+            <Dependent Role="Asignacion_Modulos">
+              <PropertyRef Name="IdMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_MenuAsignacion_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="Nombre_usuario" Nullable="false" MaxLength="81" />
+          <Property Type="Int32" Name="IdMenu" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdMenu_Padre" Nullable="false" />
+          <Property Type="String" Name="Nombre_Padre" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_MenuUsuarios_Result">
+          <Property Type="Int32" Name="IdMenu" Nullable="false" />
+          <Property Type="Int32" Name="IdModulo" Nullable="false" />
+          <Property Type="String" Name="Accion" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="Controlador" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdPadre" Nullable="false" />
+          <Property Type="Byte" Name="Nivel" Nullable="true" />
+          <Property Type="String" Name="Icon" Nullable="false" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1121,6 +1209,44 @@
                 <ScalarProperty Name="ValorRiesgo" ColumnName="ValorRiesgo" />
                 <ScalarProperty Name="RFC" ColumnName="RFC" />
                 <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Asignacion_Modulos">
+            <EntityTypeMapping TypeName="DB_Model.Asignacion_Modulos">
+              <MappingFragment StoreEntitySet="Asignacion_Modulos">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Id_Asignacion" ColumnName="Id_Asignacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_MenuAsignacion" FunctionName="DB_Model.Store.sp_MenuAsignacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_Model.sp_MenuAsignacion_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nombre_usuario" ColumnName="Nombre_usuario" />
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdMenu_Padre" ColumnName="IdMenu_Padre" />
+                <ScalarProperty Name="Nombre_Padre" ColumnName="Nombre_Padre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_MenuUsuarios" FunctionName="DB_Model.Store.sp_MenuUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_Model.sp_MenuUsuarios_Result">
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

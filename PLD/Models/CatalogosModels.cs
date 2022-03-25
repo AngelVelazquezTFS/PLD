@@ -8,6 +8,11 @@ namespace PLD.Models
 {
     public class CatalogosModels
     {
+        public List<RegisterViewModel> ListaUsuarios = new List<RegisterViewModel>();
+        public List<PermisosModulos> ListaMenus = new List<PermisosModulos>();
+        public List<AsignacionUsuarioModulo> ListaASignaciones = new List<AsignacionUsuarioModulo>();
+        public int IdUsuario { get; set; }
+        public int IdMenu { get; set; }
         public static List<RegisterViewModel> Usuarios()
         {
             using (EF.DB_Entities db = new EF.DB_Entities())
@@ -40,6 +45,36 @@ namespace PLD.Models
                     Id = m.Id,
                     Name = m.Name,
                     Activo = m.Activo
+                }).ToList();
+            }
+        }
+
+        public static List<PermisosModulos> ListaModulos()
+        {
+            using (EF.DB_Entities db = new EF.DB_Entities())
+            {
+                return db.Permisos.Select(m => new PermisosModulos
+                {
+                    IdMenu = m.IdMenu,
+                    Descripcion = m.Nombre,
+                    Tipo=m.Descripcion
+                }).ToList();
+            }
+        }
+        public static List<AsignacionUsuarioModulo> ListaAsignacionesUsuarios(int IdUsuario)
+        {
+            using (EF.DB_Entities db = new EF.DB_Entities())
+            {
+                return db.sp_MenuAsignacion(IdUsuario).Select(m => new AsignacionUsuarioModulo
+                {
+                   id=m.id,
+                   Username=m.UserName,
+                   Nombre_usuario =m.Nombre_usuario,
+                   IdMenu=m.IdMenu,
+                   Nombre=m.Nombre,
+                   IdMenu_Padre=m.IdMenu_Padre,
+                   Nombre_Padre=m.Nombre_Padre,
+                   Activo=m.Activo
                 }).ToList();
             }
         }
@@ -88,6 +123,7 @@ namespace PLD.Models
                 return Lista;
             }
         }
+       
     }
 
     public class BitacoraModels
@@ -130,4 +166,12 @@ namespace PLD.Models
         }
     }
 
-}
+    public class ModulosViewModel
+    {
+      
+        public int Idu { get; set; }
+        public string UserName { get; set; }
+        public int idCombo { get; set; }
+    }
+
+    }

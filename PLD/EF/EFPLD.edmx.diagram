@@ -30,6 +30,9 @@
         <AssociationConnector Association="DB_Model.FK_SegPermisosRoles_IdMenu" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DB_Model.KBITACORA_AML" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="DB_Model.KCONFIG_AML" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_Model.Asignacion_Modulos" Width="1.5" PointX="13.25" PointY="5.375" />
+        <AssociationConnector Association="DB_Model.FK__Asignacio__Id_Us__1E305893" />
+        <AssociationConnector Association="DB_Model.FK__Asignacio__IdMen__1D3C345A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

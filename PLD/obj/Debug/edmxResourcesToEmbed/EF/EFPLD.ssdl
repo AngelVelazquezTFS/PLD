@@ -23,6 +23,15 @@
     <Property Name="reg_baja" Type="int" />
     <Property Name="id_status" Type="int" />
   </EntityType>
+  <EntityType Name="Asignacion_Modulos">
+    <Key>
+      <PropertyRef Name="Id_Asignacion" />
+    </Key>
+    <Property Name="Id_Asignacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMenu" Type="int" />
+    <Property Name="Id_Usuario" Type="int" />
+    <Property Name="Username" Type="varchar" MaxLength="80" />
+  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -191,6 +200,30 @@
     <Property Name="IdRole" Type="int" Nullable="false" />
     <Property Name="Activo" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="FK__Asignacio__Id_Us__1E305893">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Asignacion_Modulos" Type="Self.Asignacion_Modulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Asignacion_Modulos">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Asignacio__IdMen__1D3C345A">
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="0..1" />
+    <End Role="Asignacion_Modulos" Type="Self.Asignacion_Modulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permisos">
+        <PropertyRef Name="IdMenu" />
+      </Principal>
+      <Dependent Role="Asignacion_Modulos">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_AccesosWS_AspNetUsers_Alta">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="AccesosWS" Type="Self.AccesosWS" Multiplicity="*" />
@@ -285,30 +318,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SegPermisos_IdModulo">
-    <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
-    <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Modulos">
-        <PropertyRef Name="IdModulo" />
-      </Principal>
-      <Dependent Role="Permisos">
-        <PropertyRef Name="IdModulo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SegPermisos_IdPadre">
-    <End Role="Permisos" Type="Self.Permisos" Multiplicity="0..1" />
-    <End Role="Permisos1" Type="Self.Permisos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Permisos">
-        <PropertyRef Name="IdMenu" />
-      </Principal>
-      <Dependent Role="Permisos1">
-        <PropertyRef Name="IdPadre" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SegPermisosRoles_IdMenu">
     <End Role="Permisos" Type="Self.Permisos" Multiplicity="1" />
     <End Role="PermisosRoles" Type="Self.PermisosRoles" Multiplicity="*" />
@@ -344,7 +353,13 @@
     <Parameter Name="Accion" Type="varchar" Mode="In" />
     <Parameter Name="Controlador" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_MenuAsignacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_MenuUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_MenuUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_PasswordDec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -356,6 +371,7 @@
   <EntityContainer Name="DB_ModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccesosWS" EntityType="Self.AccesosWS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignacion_Modulos" EntityType="Self.Asignacion_Modulos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -368,6 +384,14 @@
     <EntitySet Name="PasswordHistory" EntityType="Self.PasswordHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PermisosRoles" EntityType="Self.PermisosRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Asignacio__Id_Us__1E305893" Association="Self.FK__Asignacio__Id_Us__1E305893">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Asignacion_Modulos" EntitySet="Asignacion_Modulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Asignacio__IdMen__1D3C345A" Association="Self.FK__Asignacio__IdMen__1D3C345A">
+      <End Role="Permisos" EntitySet="Permisos" />
+      <End Role="Asignacion_Modulos" EntitySet="Asignacion_Modulos" />
+    </AssociationSet>
     <AssociationSet Name="FK_AccesosWS_AspNetUsers_Alta" Association="Self.FK_AccesosWS_AspNetUsers_Alta">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AccesosWS" EntitySet="AccesosWS" />
@@ -395,14 +419,6 @@
     <AssociationSet Name="FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="PasswordHistory" EntitySet="PasswordHistory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SegPermisos_IdModulo" Association="Self.FK_SegPermisos_IdModulo">
-      <End Role="Modulos" EntitySet="Modulos" />
-      <End Role="Permisos" EntitySet="Permisos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SegPermisos_IdPadre" Association="Self.FK_SegPermisos_IdPadre">
-      <End Role="Permisos" EntitySet="Permisos" />
-      <End Role="Permisos1" EntitySet="Permisos" />
     </AssociationSet>
     <AssociationSet Name="FK_SegPermisosRoles_IdMenu" Association="Self.FK_SegPermisosRoles_IdMenu">
       <End Role="Permisos" EntitySet="Permisos" />

@@ -182,7 +182,7 @@ namespace PLD.Controllers
         public ActionResult DescargaExcel(MatrizRiesgoModels M)
         {
             DataTable dt = new DataTable();
-            string titulo = "Matriz de Riesgo "+ DateTime.Now;
+            string titulo = string.Empty;
             dt.TableName = "datos";
             if (string.IsNullOrEmpty(M.Solicitud))
             {
@@ -192,11 +192,12 @@ namespace PLD.Controllers
                 string.IsNullOrEmpty(M.FechaInicio) ? "" : M.FechaInicio,
                 string.IsNullOrEmpty(M.FechaFin) ? "" : M.FechaFin
                 );
+                 titulo = "Matriz_Riesgo " + DateTime.Now;
             }
             else
             {
                 M.ListaMatriz = M.ObtieneDatos("",M.Solicitud, M.FechaInicio, M.FechaFin);
-
+                 titulo = "Matriz_Riesgo "+ M.Solicitud + " " + DateTime.Now;
             }
             
             if (M.ListaMatriz.Count > 0)

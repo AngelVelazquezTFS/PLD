@@ -3,7 +3,7 @@
 
 @if (Model.ListaMatriz != null)
 {
-    if (Model.ListaMatriz.Count > 0)
+    if (Model.ListaMatriz.Count > 0 && (Model.Lista_Solicitudes.Count==1  || Model.IdSolicitud !=null))
     {
       
         <div class="row-fluid">
@@ -17,6 +17,7 @@
                             <table class="table table-bordered table-striped" id="IdTablaMatriz">
                                 <thead>
                                     <tr>
+                                        <th>RFC</th>
                                         <th>Elemento Riesgo</th>
                                         <th>Factor Riesgo </th>
                                         <th>Descripcion</th>
@@ -33,6 +34,7 @@
                                     <tbody>
 
                                         <tr class="odd gradeX">
+                                            <th> @Model.ListaMatriz[i].RFC </th>
                                             <th> @Model.ListaMatriz[i].Elemento_Riesgo </th>
                                             <th> @Model.ListaMatriz[i].Factor_Riesgo </th>
                                             <th> @Model.ListaMatriz[i].Descripcion </th>

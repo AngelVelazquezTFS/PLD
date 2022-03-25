@@ -261,10 +261,19 @@ namespace PLD.Models
         public static IList<PermisosModels> MenuUsuario(System.Security.Principal.IPrincipal user)
         {
             var userId = user.Identity.GetUserId<int>();
-            //IList<PermisosModels> Permisos = new List<PermisosModels>();
             using (EF.DB_Entities db = new EF.DB_Entities())
             {
-                return db.sp_MenuUsuario(userId).Select(m => new PermisosModels
+                //return db.sp_MenuUsuario(userId).Select(m => new PermisosModels
+                //{
+                //    IdMenu = m.IdMenu,
+                //    Nombre = m.Nombre,
+                //    Controlador = m.Controlador,
+                //    Accion = m.Accion,
+                //    IdMenuPadre = m.IdPadre,
+                //    Nivel = m.Nivel,
+                //    Icono = m.Icon
+                //}).ToList();
+                return db.sp_MenuUsuarios(userId).Select(m => new PermisosModels
                 {
                     IdMenu = m.IdMenu,
                     Nombre = m.Nombre,
@@ -316,6 +325,26 @@ namespace PLD.Models
                 return usr.PasswordHistory.OrderByDescending(x => x.CreateDate).Take(1).Select(x => x.CreateDate).FirstOrDefault();
             }
         }
+    }
+
+    public class PermisosModulos
+    {
+ 
+        public int IdMenu { get; set; }
+        public string Descripcion { get; set; }
+        public string Tipo { get; set; }
+    }
+    public class AsignacionUsuarioModulo
+    {
+
+        public int id { get; set; }
+        public string Username { get; set; }
+        public string Nombre_usuario { get; set; }
+        public int IdMenu { get; set; }
+        public string Nombre { get; set; }
+        public int IdMenu_Padre { get; set; }
+        public string Nombre_Padre { get; set; }
+        public bool Activo { get; set; }
     }
 
 }

@@ -107,6 +107,11 @@ namespace PLD.Controllers
                         message = string.Format("Usuario y/o contraseña incorrectos");
                         //ModelState.AddModelError("", "Usuario y/o contraseña incorrectos");
                     }
+                    else if (user != null && user.IdStatus !=1)
+                    {
+                        
+                        message = string.Format("Usuario y/Inactivo");
+                    }
                     else
                     {
 
@@ -668,7 +673,7 @@ namespace PLD.Controllers
             using (EF.DB_Entities db = new EF.DB_Entities())
             {
                 //List<RegisterViewModel> Lista = new List<RegisterViewModel>();
-                Permisos = db.Permisos.Select(m => new PermisosModels
+                Permisos = db.Permisos.Where(A => A.Activo == true).Select(m => new PermisosModels
                 {
                     IdMenu = m.IdMenu,
                     Accion = m.Accion,
@@ -678,7 +683,7 @@ namespace PLD.Controllers
                     Nivel = m.Nivel
                 }).ToList();
 
-                Registros = Permisos.Where(l => l.IdMenuPadre == 0).Select(n => new PLD.Models.DTO.PermisosModels
+                Registros = Permisos.Where(l => l.IdMenuPadre == 0 ).Select(n => new PLD.Models.DTO.PermisosModels
                 {
                     id = n.IdMenu,
                     text = n.Nombre,
@@ -695,7 +700,7 @@ namespace PLD.Controllers
 
         private List<PLD.Models.DTO.PermisosModels> GetChildren(List<PermisosModels> Permisos, int parentId)
         {
-            return Permisos.Where(l => l.IdMenuPadre == parentId).Select(l => new PLD.Models.DTO.PermisosModels
+            return Permisos.Where(l => l.IdMenuPadre == parentId ).Select(l => new PLD.Models.DTO.PermisosModels
             {
                 id = l.IdMenu,
                 accion = l.Accion,
@@ -1225,6 +1230,108 @@ namespace PLD.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+        #endregion
+
+        #region asignacion de permisos
+        public ActionResult ListaPermisosAsignacion()
+        {
+            ViewBag.Title = "Aginar Permisos";
+            CatalogosModels ca = new CatalogosModels();
+            ca.ListaUsuarios = CatalogosModels.Usuarios();
+            ca.ListaMenus = CatalogosModels.ListaModulos();
+            return PartialView(ca);
+        }
+
+        public ActionResult SaveAsignacionModulo(ModulosViewModel model)
+        {
+            ResultadoModels R = new ResultadoModels();
+            try
+            {
+
+                using (EF.DB_Entities db = new EF.DB_Entities())
+                {
+                    db.Asignacion_Modulos.Add(new EF.Asignacion_Modulos()
+                    {
+                        IdMenu = model.idCombo,
+                        Id_Usuario=model.Idu,
+                        Username=model.UserName
+                    });
+                    db.SaveChanges();
+                }
+                CatalogosModels M = new CatalogosModels();
+                BitacoraModels.guardaBitacora(0, "Se Inserto correctamente la asignacion de usuarios a modulos ", "Id Usuario: " +model.Idu + " al modulo "+model.idCombo + " para el usuario "+ model.UserName, User.Identity.GetUserName());
+                R = new ResultadoModels { NotifyMsg = "Se asigno correctamente el usuario al Modulo", NotifyType = Enums.eNotify_Type.success, ToURL = Url.Action("ListaConfig", "Config") };
+                M.ListaUsuarios = CatalogosModels.Usuarios();
+                M.ListaMenus = CatalogosModels.ListaModulos();
+                M.ListaASignaciones = CatalogosModels.ListaAsignacionesUsuarios(model.Idu);
+                return PartialView("DetalleAsignacion", M);
+            }
+            catch (Exception ex)
+            {
+                Logs.Log("Error en SaveAsignacionModulo:" + ex.Message.ToString(), true);
+                R = new ResultadoModels { NotifyMsg = ex.InnerException == null ? ex.Message : ex.InnerException.Message, NotifyType = Enums.eNotify_Type.danger };
+                return PartialView("_Resultado", R);
+            }
+            
+        }
+        [HttpPost]
+        public ActionResult ConsultAsignaciones(CatalogosModels M)
+        {
+            ResultadoModels R = new ResultadoModels();
+            M.ListaUsuarios = CatalogosModels.Usuarios();
+            M.ListaMenus = CatalogosModels.ListaModulos();
+            M.ListaASignaciones = CatalogosModels.ListaAsignacionesUsuarios(M.IdUsuario);
+
+            if (M.ListaASignaciones.Count > 0)
+            {
+
+                return PartialView("DetalleAsignacion", M);
+             
+            }
+            else
+            {
+                R = new ResultadoModels
+                    {
+                        NotifyMsg = "No se encontraron registros con los parametros de busqueda",
+                        NotifyType = Enums.eNotify_Type.warning
+                    };
+                    return PartialView("_Resultado", R);
+             }
+        }
+
+        [HttpPost]
+        public ActionResult BorrarAsignaciones(CatalogosModels M)
+        {
+            ResultadoModels R = new ResultadoModels();
+            M.ListaUsuarios = CatalogosModels.Usuarios();
+            M.ListaMenus = CatalogosModels.ListaModulos();
+           
+
+            try
+            {
+                EF.DB_Entities db = new EF.DB_Entities();
+                var borra = from x in db.Asignacion_Modulos
+                            where x.Id_Usuario==M.IdUsuario && x.IdMenu==M.IdMenu
+                            select x;
+
+                db.Asignacion_Modulos.RemoveRange(borra);
+                db.SaveChanges();
+                M.ListaASignaciones = CatalogosModels.ListaAsignacionesUsuarios(M.IdUsuario);
+                return PartialView("DetalleAsignacion", M);
+            }
+            catch (Exception)
+            {
+
+
+                R = new ResultadoModels
+                {
+                    NotifyMsg = "Error al Borrar la asignacion",
+                    NotifyType = Enums.eNotify_Type.warning
+                };
+                return PartialView("_Resultado", R);
+            }
+            
+            }  
         #endregion
     }
 }
