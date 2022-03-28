@@ -21,8 +21,11 @@ namespace PLD.Models
         //private string pathXML = @"D:\inetpub\wwwroot\LavadoDinero\PLD\PLD\xmlCredito.xml";
         //private string pathXSD = @"D:\inetpub\wwwroot\LavadoDinero\PLD\PLD\mpc.xsd";
 
-        private string pathXML = @"C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\xmlCredito.xml";
-        private string pathXSD = @"C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\mpc.xsd";
+        //private string pathXML = @"C:\Proyectos\PLDLAZARO\PLD\PLD\xmlCredito.xml";
+        //private string pathXSD = @"C:\Proyectos\PLDLAZARO\PLD\PLD\mpc.xsd";
+
+        private string pathXML = System.Configuration.ConfigurationManager.AppSettings["pathXML"];
+        private string pathXSD = System.Configuration.ConfigurationManager.AppSettings["pathXSD"];
 
 
         public class mpcModel
