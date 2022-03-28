@@ -1,0 +1,49 @@
+﻿@using PLD.Models
+@model ConfigViewModels
+
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index","Home")" title="Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Configuración</a>
+        <a href="#" class="current">Sistema</a>
+    </div>
+    <h1>Configuración Sistema</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tab1">RFC Toyota</a>
+                        </li>
+                        <li><a data-toggle="tab" href="#tab2">UMAS</a></li>
+                        <li><a data-toggle="tab" href="#tab3">Correos</a></li>
+                        <li><a data-toggle="tab" href="#tab4">Prepago</a></li>
+                    </ul>
+                </div>
+                <div class="widget-content tab-content">
+                    <div id="tab1" class="tab-pane active">
+                        @Html.Partial("ListaRFC", Model)
+                    </div>
+                    <div id="tab2" class="tab-pane">
+                        @Html.Partial("ListaConfig", new UMAViewModel())
+                    </div>
+                    <div id="tab3" class="tab-pane">
+                        @Html.Partial("ListaCorreos", Model)
+                    </div>
+                    <div id="tab4" class="tab-pane">
+                        @Html.Partial("ListaPrepago", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+

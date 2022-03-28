@@ -1,0 +1,87 @@
+﻿@using PLD.Models
+@model PLD.Models.DialogViewModel
+
+<style>
+    .btn-danger {
+        color: #fff;
+        background-color: #d9534f !important;
+        border-color: #d9534f !important;
+    }
+
+        .btn-danger:hover {
+            color: #fff;
+            background-color: #c9302c !important;
+            border-color: #c12e2a !important;
+        }
+</style>
+<div class="widget-content nopadding">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">
+            ×
+        </button>
+        <h3>@Model.TituloModal|</h3>
+    </div>
+    <div class="modal-body">
+        @switch (Model.IdParametro)
+        {
+            case 1:
+                <div class="control-group">
+                    <label>RFC</label>
+                </div>
+                <div class="control-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "span12" })
+                </div>
+                break;
+            case 2:
+                <div class="control-group">
+                    <label>Descripción</label>
+                </div>
+                <div class="control-group">
+                    @Html.TextBoxFor(m => m.Descripcion, new { @class = "span12" })
+                </div>
+                <div class="control-group">
+                    <label>Valor</label>
+                </div>
+                <div class="control-group">
+                    @Html.TextBoxFor(m => m.Valor, new { @class = "span12" })
+                </div>
+                break;
+            case 3:
+                <div class="control-group">
+                    <label>Email</label>
+                </div>
+                <div class="control-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "span12" })
+                </div>
+                break;
+            default:
+                break;
+
+        }
+    </div>
+
+    <div class="modal-footer">
+        <button id="btn-cerrar" type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
+        @Ajax.ActionLink("Guardar Cambio", Model.MetodoAccion, Model.Controlador, new { id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "Post",
+            AllowCache = false,
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "content",
+            OnBegin = "BlockBody()",
+            OnSuccess = "UnBlockBody()",
+            OnFailure = "UnBlockBody()",
+            OnComplete = "UnBlockBody()"
+        }, new
+        {
+            @class = "btn btn-danger",
+            @type = "button",
+            data_dismiss = "modal",
+            data_backdrop = "false"
+        }
+        )
+
+    </div>
+</div>

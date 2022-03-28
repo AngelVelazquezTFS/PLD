@@ -299,6 +299,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\PLD.dll" />
+    <Content Include="bin\PLD.pdb" />
     <Content Include="Content\bootstrap\css\4.0 bootstrap.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\bootstrap\css\bootstrap-grid.min.css" />
@@ -1147,15 +1149,19 @@
     <Content Include="Views\Operaciones\CargaRemarketing.cshtml" />
     <Content Include="Views\Operaciones\ConsultaMatrizRiesgo.cshtml" />
     <Content Include="Views\Operaciones\_CargaArchivoExcel.cshtml" />
-    <Content Include="Views\Operaciones\_Detalle.cshtml" />
-    <Content Include="Views\Operaciones\_GeneraExcel.cshtml" />
     <Content Include="Views\Operaciones\_VerDetalle.cshtml" />
     <Content Include="Views\Operaciones\_VistaBusqueda.cshtml" />
     <Content Include="Views\Operaciones\_VistaListaDatos.cshtml" />
+    <Content Include="Views\Account\DetalleAsignacion.cshtml" />
+    <Content Include="Views\Account\ListaPermisosAsignacion.cshtml" />
+    <Content Include="Views\Account\RegistrarAsignacion.cshtml" />
+    <Content Include="Views\UMA\ListaUMA.cshtml" />
+    <Content Include="Views\UMA\RegisterUMA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="logs\" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

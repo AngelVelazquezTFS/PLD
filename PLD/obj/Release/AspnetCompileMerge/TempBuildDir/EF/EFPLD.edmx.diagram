@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6b3386cdfbb947ee8d7e14edac63491d" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_Model.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.AccesosWS" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.AspNetRoles" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.AspNetUserClaims" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.AspNetUserLogins" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.AspNetUserRoles" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.AspNetUsers" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.CREMARK_PLANPISO_AML" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.Modulos" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.PasswordHistory" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.Permisos" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Model.PermisosRoles" Width="1.5" PointX="10.25" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="DB_Model.FK_AccesosWS_AspNetUsers_Alta" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_AccesosWS_AspNetUsersBaja" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_SegPermisosRoles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_dbo_PasswordHistory_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_SegPermisos_IdModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_SegPermisos_IdPadre" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Model.FK_SegPermisosRoles_IdMenu" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_Model.KBITACORA_AML" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_Model.KCONFIG_AML" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_Model.Asignacion_Modulos" Width="1.5" PointX="13.25" PointY="5.375" />
+        <AssociationConnector Association="DB_Model.FK__Asignacio__Id_Us__1E305893" />
+        <AssociationConnector Association="DB_Model.FK__Asignacio__IdMen__1D3C345A" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

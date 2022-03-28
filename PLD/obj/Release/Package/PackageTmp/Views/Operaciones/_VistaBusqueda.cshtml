@@ -1,0 +1,110 @@
+﻿@using PLD.Models
+@model MatrizRiesgoModels
+
+@if (Model.ListaMatriz != null)
+{
+    if (Model.ListaMatriz.Count == 0)
+    {
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-info-sign"></i>
+                </span>
+                <h5>Busqueda de Matriz</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form class="form-horizontal"
+                      method="post"
+                      UpdateTargetId="idMatriz"
+                      id="IdConsulta">
+                    <table class="table table-bordered table-striped" id="IdTablaMatriz">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr class="odd gradeX">
+                                <th>
+                                    <div class="control-group">
+                                        <label class="control-label">Id Solicitud:</label>
+                                        <div class="controls">
+                                            <input type="text" name="IdSolicitud" id="IdSolicitud" class="span9" placeholder="Introduce Solicitud" />
+                                        </div>
+                                        <label class="control-label">Rfc:</label>
+                                        <div class="controls">
+                                            <input type="text" name="Rfc" id="Rfc" class="span9" placeholder="Introduce RFC" />
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="control-group">
+                                        <label class="control-label">Fecha de Inicio:</label>
+                                        <div class="span2 col-md-1">
+                                            <div class="overflow-x:auto;">
+                                                <div>
+                                                    <input input type="date" id="FechaInicio" name="FechaInicio" value="@Model.ValorFechaInicio.ToString("yyyy-MM-dd")" min="2018-01-01" max="2022-03-31" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Fecha de Inicio:</label>
+                                        <div class="span2 col-md-1">
+                                            <div class="overflow-x:auto;">
+                                                <div>
+                                                    <input type="date" id="FechaFin" name="FechaFin" value="@Model.ValorFechaFin.ToString("yyyy-MM-dd")" min="2018-01-01" max="@Model.ValorMaximo.ToString("yyyyy-MM-dd")" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-danger" title="Search" style="text-align:center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                            </svg> Buscar
+                        </button>
+                    </div>
+                </form>
+                   </div>
+                </div>
+    }
+}
+<script>
+        $(function () {
+            $("#IdConsulta").on("submit", function (e) {
+                e.preventDefault();
+                var f = $(this);
+                var formData = new FormData(document.getElementById("IdConsulta"));
+                formData.append("dato", "valor");
+                 var url = "@Url.Action("ConsultaMatriz", "Operaciones")";
+                $.ajax({
+                    url: url,
+                    type: "post",
+                    dataType: "multipart/form-data",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+
+                })
+                    .complete(function (formData) {
+                        if (formData.success) {
+                            $("#idMatriz").html(formData.responseText);
+                        }
+                        else {
+                            console.log("entro 2");
+                        }
+                    })
+                    .fail(function () {
+                         console.log("entro 3");
+                    })
+
+            });
+        });
+
+</script>
+
+

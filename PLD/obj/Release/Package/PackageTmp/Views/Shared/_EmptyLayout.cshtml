@@ -1,0 +1,66 @@
+﻿    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/FontAwesome")
+    @Styles.Render("~/Content/SimpleLineIcons") @*06 Feb 2019*@
+    @Styles.Render("~/Content/BootstrapV4")
+    @Styles.Render("~/Content/AbleProLite")
+    @*@Styles.Render("~/Content/BootstrapMdb")*@
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Krub:500|Poppins" rel="stylesheet" type="text/css" />
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryUI")
+    @Scripts.Render("~/bundles/bootstrapl")
+    @*@Scripts.Render("~/bundles/bootstrapMDJS")*@
+
+    @*<script type="text/javascript">
+        $(function () {
+            $(".defaultFocus").first().focus();
+            $(".defaultFocus").change();
+        });
+    </script>
+
+    <script type="text/javascript">
+        /*
+        Background Animation
+        */
+        var i = 0;
+        var url = '@Url.Content("~/Content/images/")';
+        function change() {
+            var img = ["1", "2", "3"];
+            i = (i + 1) % img.length;
+
+            $('#bodyBackground')
+            .animate({ opacity: 0.9 }, 'slow', function () {
+                $(this)
+                    .css({ 'background-image': "url('" + url + "b" + img[i] + ".jpg')", "background-size": "cover" })
+                    .animate({ opacity: 0.9 }, {
+                        duration: 2000, specialEasing: {
+                            width: "linear",
+                            height: "easeOutBounce"
+                        }
+                    });
+            });
+        }
+        setInterval(change, 5000);
+    </script>*@
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

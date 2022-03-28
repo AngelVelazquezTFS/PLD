@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/bundles/bootstrapTest")
+</head>
+<body>
+    <div class="loader-bg">
+        <div class="loader-bar">
+        </div>
+    </div>
+
+    @Html.Partial("_navUser", PLD.Models.UserRolesExtends.GetInfoUsuario(User))
+    @Html.Partial("_navMenu", PLD.Models.UserRolesExtends.MenuUsuario(User))
+    <div id="mdlAlert"></div>
+    <div id="content">
+        @RenderBody()
+    </div>
+    <div class="row-fluid">
+        @Html.Partial("_Footer")
+    </div>
+    <div id="divResultado"></div>
+
+    @Scripts.Render("~/bundles/jquerymaruti")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

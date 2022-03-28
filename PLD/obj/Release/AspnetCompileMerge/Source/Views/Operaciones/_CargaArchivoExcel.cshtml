@@ -1,0 +1,116 @@
+﻿@using PLD.Models
+@model OperacionesModels
+@{
+    ViewBag.Title = (Model.TipoCarga == 1) ? "Remarketing" : "Plan Piso";
+}
+
+<div>
+    <form enctype="multipart/form-data" id="formuploadajax" UpdateTargetId="mdlAlert" method="post">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => Model.TipoCarga)
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>@*Carga de datos & @ViewBag.Title*@</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <div class="control-group">
+                    @for (int i = 0; i < Model.Campos.Count; i++)
+                    {
+                        <label class="control-label">Seleccionar Archivo:</label>
+
+                        if (Model.Campos[i].Tipo == "file")
+                        {
+                            @Html.HiddenFor(m => Model.Campos[i].Tipo)
+                            @Html.HiddenFor(m => Model.Campos[i].StyleClass)
+                            @Html.HiddenFor(m => Model.Campos[i].Nombre)
+                            @Html.HiddenFor(m => Model.Campos[i].data_name)
+                            @Html.TextBoxFor(n => n.Campos[i].Archivos, new
+                       {
+                           @class = "form-control " + (!string.IsNullOrWhiteSpace(Model.Campos[i].StyleClass) ? Model.Campos[i].StyleClass : string.Empty),
+                           placeholder = Model.Campos[i].Nombre,
+                           @type = Model.Campos[i].Tipo,
+                           @data_name = Model.Campos[i].data_name
+
+                       })}
+                    }
+                </div>
+                <div class="control-group">
+                    <div class="progress progress-striped active" id="idBarra" style="display:none;">
+                        <div class="bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" value="validate" id="miBoton" class="btn btn-danger" title="Cargar Archivo">
+                        <i class="icon-upload"></i> Cargar Archivo
+                    </button>
+                </div>
+            </div>
+         </div>
+    </form>
+</div>
+
+
+<script>
+    $(function () {
+  
+        $("#formuploadajax").on("submit", function (e) {
+            e.preventDefault();
+            console.log("entro");
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formuploadajax"));
+            formData.append("dato", "valor");
+             var url = "@Url.Action("RemarketingCarga", "Operaciones")";
+            $.ajax({
+                url: url,
+                type: "post",
+                dataType: "multipart/form-data",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+
+            })
+                .done(function (formData) {
+                    console.log("entro 11111111");
+                   /* $("#mdlAlert").html("Respuesta: " + res);*/
+
+                })
+                .complete(function (formData) {
+                    if (formData.success) {
+                        console.log("entro 1" + formData.responseText);
+                        $("#idBarra").hide();
+                        $("#mdlAlert").html(formData.responseText);
+                    }
+                    else {
+                        console.log("entro 2");
+                    }
+                })
+                .fail(function () {
+                     console.log("entro 3");
+
+
+                })
+
+        });
+    });
+      
+</script>
+
+<script>
+    const boton = document.querySelector("#miBoton");
+    boton.addEventListener("click", function (evento) {
+       $("#idBarra").show();
+        var percent = 0;
+        timerId = setInterval(function () {
+            percent += 5;
+            $('.bar').css('width', percent + '%');
+            $('.bar').attr('aria-valuenow', percent);
+            $('.bar').text(percent + '%');
+            if (percent == 100) {
+                clearInterval(timerId);
+               /* $("#idBarra").hide();*/
+            }
+        }, 1000);
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿@using PLD.Models
+@model ResultadoModels
+
+@* ERRORES DEL VIEW MODEL *@
+@if (Model.ModelState != null && Model.ModelState.Count > 0)
+{
+    Model.NotifyMsg = string.Empty;
+    Model.NotifyMsg = string.Join("</div><div>", Model.ModelState.Where(E => E.Errors.Count > 0).SelectMany(E => E.Errors).Select(E => E.ErrorMessage).ToArray());
+    if (!string.IsNullOrWhiteSpace(Model.NotifyMsg))
+    {
+        <script type="text/javascript">
+
+            $.gritter.add({
+                title: "Atención!",
+                sticky: false,
+                Image: "../Content/img/demo/envelope.png",
+                text: "@Html.Raw(Model.NotifyMsg.Replace("'", string.Empty).Replace("\r\n"," "))"
+            });
+        </script>
+    }
+}
+else
+{
+    if (Model.NotifyType != null && Model.NotifyType != Enums.eNotify_Type.none)
+    {
+        <script type="text/javascript">
+
+            $.gritter.add({
+                title: "Información",
+                sticky: false,
+                Image: "../Content/img/demo/envelope.png",
+                text: "@Html.Raw(Model.NotifyMsg.Replace("'", string.Empty).Replace("\r\n"," "))"
+            });
+        </script>
+        @*<script type="text/javascript">
+            $.notify({
+            // options
+            message: '@Html.Raw(Model.NotifyMsg.Replace("'", string.Empty).Replace("\r\n"," "))'
+                }, {
+                    // settings
+                    type: '@Enum.GetName(Model.NotifyType.GetType(), Model.NotifyType)',
+                    position: null,
+                    offset: {
+                        x: 0,
+                        y: 50
+                    },
+                    delay: 20000
+                });
+            </script>*@
+    }
+}
+
+@if (Model.NotifyType != Enums.eNotify_Type.none && !string.IsNullOrWhiteSpace(Model.ToURL))
+{
+    <script type="text/javascript">
+            var div = '@(string.IsNullOrWhiteSpace(Model.divLoad) ? string.Empty : Model.divLoad)';
+            if (div != '') {
+                $('#' + div).load('@Model.ToURL');
+            }
+            else {
+                window.location = '@Model.ToURL';
+            }
+    </script>
+}

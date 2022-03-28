@@ -1,0 +1,65 @@
+﻿@using PLD.Models
+@model IList<RegisterRolViewModel>
+@{
+    //ViewBag.Title = "Usuarios Registrados";
+}
+
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-th"></i></span>
+        <h5>Roles Registrados</h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table id="dtListaRoles" class="table table-bordered data-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Activo</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr class="gradeX">
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@(item.Activo ? "SI" : "NO")</td>
+                            <td>
+                                @{switch (item.Activo)
+                                    {
+                                        case true: <span>ACTIVO</span>
+                                            break;
+                                        case false: <span>INACTIVO</span>
+                                            break;
+                                        default: <span></span>
+                                            break;
+                                    }}
+                            </td>
+                            <td>
+                                <!-- Default dropleft button -->
+                                <div class="btn-group">
+                                    <button class="btn btn-danger"> Acciones</button>
+                                    <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <!-- Dropdown menu links -->
+                                        <li>
+                                            @Ajax.ActionLink("Editar Rol", "RegisterRol", "Account", new { Id = item.Id}, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divEditarRol", HttpMethod = "get", OnBegin = "", OnSuccess = "$(window).scrollTop(0);inicializaMDBInputs('formRegistrar');" }, new { @title = "Editar Rol" })
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

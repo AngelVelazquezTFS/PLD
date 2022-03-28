@@ -1,0 +1,56 @@
+﻿
+@model IList<PLD.Models.PermisosModels>
+
+
+<div id="sidebar">
+    <ul>
+        @foreach (var p in Model.Where(m => m.IdMenuPadre == 0))
+        {
+            if (p.Accion != "")
+            {
+                <li>
+                    <a href="@p.Accion"> <i class="@p.Icono"></i><span> @p.Nombre</span> </a>
+                </li>   
+            }
+            else
+            {
+                <li class="submenu">
+                    <a href="#">
+                        <i class="@p.Icono"></i>
+                        <span>@p.Nombre</span>
+                        @{int i = 0;}
+                        @foreach (var nivelUno in Model.Where(m => m.Nivel == 1 && m.IdMenuPadre == p.IdMenu))
+                        {
+                            i++;
+                        }
+
+                        @if (i > 0)
+                        {
+                            @*<span class="label label-important">
+                @i
+            </span>
+            <b class="caret"></b>*@
+                        }
+                    </a>
+                    <ul>
+                        @foreach (var nivelUno in Model.Where(m => m.Nivel == 1 && m.IdMenuPadre == p.IdMenu))
+                        {
+                            <li>
+                                @Ajax.ActionLink(nivelUno.Nombre, nivelUno.Accion, nivelUno.Controlador, "",
+                                new AjaxOptions
+                                {
+                                    AllowCache = false,
+                                    InsertionMode = InsertionMode.Replace,
+                                    UpdateTargetId = "content",
+                                    OnBegin = "",
+                                    OnSuccess = ""
+                                })
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+        }
+    </ul>
+</div>

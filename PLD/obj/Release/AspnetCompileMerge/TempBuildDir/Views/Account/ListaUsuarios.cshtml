@@ -1,0 +1,138 @@
+﻿@using PLD.Models
+@model IList<RegisterViewModel>
+
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index","Home")" title="Administración Usuarios" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        @*<a href="#" class="tip-bottom">Administración</a>
+        <a href="#" class="current">Usuarios</a>*@
+    </div>
+    <h1>Administración de Usuarios</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="" id="divEditarUsuario">
+                @*<div class="col-xs-12" id="">*@
+                @Html.Partial("Register", new RegisterViewModel())
+                @*</div>*@
+            </div>
+        </div>
+        <div class="span9">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-th"></i></span>
+                    <h5>Usuarios Registrados</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Email Confirmado</th>
+                                <th>Estatus</th>
+                                <th>Fecha Alta</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr class="gradeA">
+                                        <td>@item.UserName</td>
+                                        <td>@item.Nombre @item.Paterno</td>
+                                        <td>@item.Email</td>
+                                        <td>@(item.EmailConfirmed ? "SI" : "NO")</td>
+                                        <td>
+                                            @{switch (item.IdStatus)
+                                                {
+                                                    case 1: <span>ACTIVO</span>
+                                                        break;
+                                                    case 2: <span>INACTIVO</span>
+                                                        break;
+                                                    default: <span></span>
+                                                        break;
+                                                }}
+                                        </td>
+                                        <td>@item.FechaAlta</td>
+                                        <td>
+                                            <!-- Default dropleft button -->
+                                            <div class="btn-group">
+                                                <button class="btn btn-danger"> Acciones</button>
+                                                <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <!-- Dropdown menu links -->
+                                                    <li>
+                                                        @Ajax.ActionLink("Desbloquear Acceso", "DesbloquearAcceso", "Account", new { username = item.UserName }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divResultado", HttpMethod = "get", OnBegin = "", OnSuccess = "$(window).scrollTop(0);" }, new { @title = "Desbloquear Acceso" })
+                                                    </li>
+                                                    <li>
+                                                        @Ajax.ActionLink("Editar Usuario", "Register", "Account", new { username = item.UserName }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divEditarUsuario", HttpMethod = "get", OnBegin = "", OnSuccess = "$(window).scrollTop(0);inicializaMDBInputs('formRegistrar');" }, new { @title = "Editar Usuario" })
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    @if (!item.EmailConfirmed)
+                                                    {
+                                                        <li>
+                                                            <a href="#reenviarCorreoRegistro" data-userid="@item.Id">Reenviar Correo de Registro</a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //$(function () {
+      /*  $('#dtListaUsuarios').DataTable();*/
+    //});
+
+        $(function () {
+            $("a[href='#reenviarCorreoRegistro']").on('click', function (e) {
+                var url = "@Url.Action("ResendEmailConfirmation", "Account")";
+                var model = { userId: $(this).data("userid") };
+                $.ajax({
+                    url: url,
+                    beforeSend: function (xhr) {
+                        BlockBody();
+                        $("#divResultado").html("");
+                    },
+                    type: 'POST',
+                    data: model,
+                    success: function (result) {
+                        $("#divResultado").html(result);
+                        UnBlockBody();
+                    }
+                });
+            });
+
+        });
+
+
+        function inicializaMDBInputs(idContainer) {
+            $("#"+idContainer ).find('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea')
+            .each(function (element, i) {
+                if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
+                    $(this).siblings('label').addClass('active');
+                } else {
+                    $(this).siblings('label').removeClass('active');
+                }
+            });
+        }
+</script>
+
+@Scripts.Render("~/bundles/jquerymarutitable")

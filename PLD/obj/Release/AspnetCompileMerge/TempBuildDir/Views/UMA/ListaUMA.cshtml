@@ -1,0 +1,89 @@
+﻿
+@using PLD.Models
+@model IList<UMAViewModels>
+
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index","Home")" title="Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Configuración</a>
+        <a href="#" class="current">Umbral Alertas</a>
+    </div>
+    <h1>Configuración UMA</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="" id="divEditarUMA">
+                @Html.Partial("RegisterUMA", new UMAViewModels())
+            </div>
+        </div>
+        <div class="span9">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-th"></i></span>
+                    <h5>Configuraciones Registradas</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                <th>UMA</th>
+                                <th>Monto</th>
+                                <th>Fecha Incio</th>
+                                <th>Fecha Fin</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                            <tr class="gradeA">
+                                <td>@item.UMA_DS_DES</td>
+                                <td>@item.UMA_NO_MTO</td>
+                                <td>@item.UMA_FE_INICIO</td>
+                                <td>@item.UMA_FE_FIN</td>
+                                <td>
+                                    <!-- Default dropleft button -->
+                                    <div class="btn-group">
+                                        <button class="btn btn-danger"> Acciones</button>
+                                        <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <!-- Dropdown menu links -->
+                                            <li>
+                                                @Ajax.ActionLink("Editar UMA", "RegisterUMA", "UMA", new { username = item.UMA_ID_CVE }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divEditarUMA", HttpMethod = "get", OnBegin = "", OnSuccess = "$(window).scrollTop(0);inicializaMDBInputs('formRegistrar');" }, new { @title = "Editar Usuario" })
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function inicializaMDBInputs(idContainer) {
+        $("#" + idContainer).find('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea')
+            .each(function (element, i) {
+                if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
+                    $(this).siblings('label').addClass('active');
+                } else {
+                    $(this).siblings('label').removeClass('active');
+                }
+            });
+    }
+</script>
+
+@Scripts.Render("~/bundles/jquerymarutitable")
+

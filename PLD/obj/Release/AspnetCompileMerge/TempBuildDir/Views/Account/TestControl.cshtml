@@ -1,0 +1,187 @@
+﻿@using PLD.Models
+@model IList<RegisterViewModel>
+@{
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#">Form elements</a>
+        <a href="#" class="current">Validation</a>
+    </div>
+    <h1>Form validation</h1>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Form Elements</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">Color picker (hex)</label>
+                            <div class="controls">
+                                <input type="text"
+                                       data-color="#ffffff"
+                                       value="#ffffff"
+                                       class="colorpicker input-big span11" />
+                                <span class="help-block">Color picker with Formate of (hex)</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Color picker (rgba)</label>
+                            <div class="controls">
+                                <input type="text"
+                                       data-color="rgba(344,232,53,0.5)"
+                                       value="rgba(344,232,53,0.5)"
+                                       data-color-format="rgba"
+                                       class="colorpicker span11" />
+                                <span class="help-block">Color picker with Formate of (rgba)</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Date picker (dd-mm)</label>
+                            <div class="controls">
+                                <input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="01-02-2013" class="datepicker span11" />
+                                <span class="help-block">Date with Formate of (dd-mm-yy)</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Date Picker (mm-dd)</label>
+                            <div class="controls">
+                                <div data-date="12-02-2012"
+                                     class="input-append date datepicker">
+                                    <input type="text"
+                                           value="12-02-2012"
+                                           data-date-format="mm-dd-yyyy"
+                                           class="span11" />
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Color Picker (rgb)</label>
+                            <div class="controls">
+                                <div data-color-format="rgb"
+                                     data-color="rgb(155, 142, 180)"
+                                     class="input-append color colorpicker colorpicker-rgb">
+                                    <input type="text"
+                                           value="rgb(155, 142, 180)"
+                                           class="span11" />
+                                    <span class="add-on">
+                                        <i style="background-color: rgb(155, 142, 180)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Color Picker (hex)</label>
+                            <div class="controls">
+                                <div data-color-format="hex"
+                                     data-color="#000000"
+                                     class="input-append color colorpicker">
+                                    <input type="text" value="#000000" class="span11" />
+                                    <span class="add-on">
+                                        <i style="background-color: #000000"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-primary">Reset</button>
+                            <button type="submit" class="btn btn-info">Edit</button>
+                            <button type="submit" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Form Elements</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">Tooltip Input</label>
+                            <div class="controls">
+                                <input type="text"
+                                       placeholder="Hover for tooltip…"
+                                       data-title="A tooltip for the input"
+                                       class="span11 tip"
+                                       data-original-title="" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Type ahead Input</label>
+                            <div class="controls">
+                                <input type="text"
+                                       placeholder="Type here for auto complete…"
+                                       style="margin: 0 auto"
+                                       data-provide="typeahead"
+                                       data-items="4"
+                                       data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Ahmedabad","India","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'
+                                       class="span11" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Prepended Input</label>
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <span class="add-on">#</span>
+                                    <input type="text"
+                                           placeholder="prepend"
+                                           class="span11" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Appended Input</label>
+                            <div class="controls">
+                                <div class="input-append">
+                                    <input type="text" placeholder="5.000" class="span11" />
+                                    <span class="add-on">$</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group warning">
+                            <label class="control-label" for="inputWarning">Input with warning</label>
+                            <div class="controls">
+                                <input type="text" id="inputWarning" class="span11" />
+                                <span class="help-inline">Something may have gone wrong</span>
+                            </div>
+                        </div>
+                        <div class="control-group error">
+                            <label class="control-label" for="inputError">Input with error</label>
+                            <div class="controls">
+                                <input type="text" id="inputError" class="span11" />
+                                <span class="help-inline">Please correct the error</span>
+                            </div>
+                        </div>
+                        <div class="control-group info">
+                            <label class="control-label" for="inputInfo">Input with info</label>
+                            <div class="controls">
+                                <input type="text" id="inputInfo" class="span11" />
+                                <span class="help-inline">Username is already taken</span>
+                            </div>
+                        </div>
+                        <div class="control-group success">
+                            <label class="control-label" for="inputSuccess">Input with success</label>
+                            <div class="controls">
+                                <input type="text" id="inputSuccess" class="span11" />
+                                <span class="help-inline">Woohoo!</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

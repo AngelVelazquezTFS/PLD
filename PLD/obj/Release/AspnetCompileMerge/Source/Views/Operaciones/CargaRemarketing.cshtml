@@ -1,0 +1,27 @@
+﻿
+@using PLD.Models
+@model OperacionesModels
+@{
+    ViewBag.Title = (Model.TipoCarga == 1) ? "Remarketing" : "Plan Piso";
+}
+
+@*@Scripts.Render("~/bundles/jquerymarutitable")*@
+<div id="content-header">
+    <div id="breadcrumb">
+        @*<a href="" title=""</a>
+            <a href="#"></a>
+            <a href="#"></a>*@
+    </div>
+    <h1>Carga de Archivos Excel @ViewBag.Title</h1>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        @Html.Partial("_CargaArchivoExcel", Model)
+    </div>
+</div>
+
+
+
+
+

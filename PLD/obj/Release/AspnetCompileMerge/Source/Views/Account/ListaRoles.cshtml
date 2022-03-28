@@ -1,0 +1,114 @@
+﻿@using PLD.Models
+@model IList<RegisterRolViewModel>
+
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index","Home")" title="Administración Usuarios" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Administración</a>
+        <a href="#" class="current">Roles</a>
+    </div>
+    <h1>Administración de Roles</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="" id="divEditarRol">
+                @Html.Partial("RegisterRol", new RegisterRolViewModel())
+            </div>
+        </div>
+        <div class="span8">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"><i class="icon-th"></i></span>
+                    <h5>Roles Registrados</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Activo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr class="gradeX">
+
+                                        <td>@item.Name</td>
+                                        <td>@(item.Activo ? "SI" : "NO")</td>
+                                        <td>
+                                            <!-- Default dropleft button -->
+                                            <div class="btn-group">
+                                                <button class="btn btn-danger"> Acciones</button>
+                                                <button type="button" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <!-- Dropdown menu links -->
+                                                    <li>
+                                                        @Ajax.ActionLink("Editar Rol", "RegisterRol", "Account", new { Id = item.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "divEditarRol", HttpMethod = "get", OnBegin = "", OnSuccess = "$(window).scrollTop(0);inicializaMDBInputs('formRegistrar');" }, new { @title = "Editar Rol" })
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $.get("/Account/ListaRoles", null, DataBind);
+    function DataBind(ListRoles) {
+        var SetData = $("#SetListRoles");
+        var ckeck = "";
+        for (var i = 0; i < ListRoles.length; i++) {
+            if (ListRoles[i].Activo == true) {
+                check = "<input type='checkbox' id='chkStatus' checked='checked' />";
+            }
+            else {
+                check = "<input type='checkbox' id='chkStatus' />";
+            }
+            var Data = "<tr class='gradeA'>" +
+                "<td style='text-align: center'>" + ListRoles[i].Name + "</td>" +
+                "<td style='text-align: center'>" + check + "</td>" +
+                "<td style='text-align: center'>" + "<a href='#' class='icon-edit' onclick='EditRecord(" + ListRoles[i].Id + ")' ><span class='icon-edit'></span></a>" + "</td>" +
+                "</tr>";
+            SetData.append(Data);
+        }
+    }
+
+    function EditRecord(Id) {
+        var url = "/Acount/RegisterRol?Id=" + Id;
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+            }
+        })
+    }
+
+    function inicializaMDBInputs(idContainer) {
+        $("#" + idContainer).find('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea')
+            .each(function (element, i) {
+                if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
+                    $(this).siblings('label').addClass('active');
+                } else {
+                    $(this).siblings('label').removeClass('active');
+                }
+            });
+    }
+</script>
+
+@Scripts.Render("~/bundles/jquerymarutitable")

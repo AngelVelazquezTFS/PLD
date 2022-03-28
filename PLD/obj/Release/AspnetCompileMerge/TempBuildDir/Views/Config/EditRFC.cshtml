@@ -1,0 +1,70 @@
+﻿@using PLD.Models
+@model  PLD.Models.DialogViewModel
+
+<div>
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">
+            ×
+        </button>
+        <h3>Editar Registro</h3>
+    </div>
+    @using (Ajax.BeginForm("EditRFC", "Config", new AjaxOptions
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "mainListRFC",
+        InsertionMode = InsertionMode.Replace
+    }, new { @class = "form-horizontal", role = "form", id = "formRegistrar" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-body">
+            <div class="control-group">
+                <label>RFC</label>
+            </div>
+            <div class="control-group">
+                @Html.TextBoxFor(m => m.Email, new { @class = "span12" })
+            </div>
+        </div>
+        <div class="modal-footer form-actions">
+            <button type="submit" class="btn btn-danger" data-dismiss="modal">Guardar Cambio</button>
+        </div>
+    }
+</div>
+
+@*<div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">
+            ×
+        </button>
+        <h3>Editar Registro</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label>RFC</label>
+        </div>
+        <div class="control-group">
+            @Html.TextBoxFor(m => m.Email, new { @class = "span12", id = "strEmail" })
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btn-cerrar" type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
+        @Ajax.ActionLink("Guardar Cambio", "EditRFC", "Config", new { id = Model.Id, correo =},
+        new AjaxOptions
+        {
+            HttpMethod = "Post",
+            AllowCache = false,
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "mainListRFC",
+            //OnBegin = "BlockBody()",
+            //OnSuccess = "UnBlockBody()",
+            //OnFailure = "UnBlockBody()",
+            //OnComplete = "UnBlockBody()"
+        }, new
+        {
+            @class = "btn btn-danger",
+            @type = "button",
+            data_dismiss = "modal",
+            data_backdrop = "false"
+        }
+        )
+
+    </div>*@

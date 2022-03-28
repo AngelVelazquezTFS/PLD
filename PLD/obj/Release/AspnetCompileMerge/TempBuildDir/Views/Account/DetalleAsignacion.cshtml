@@ -1,0 +1,62 @@
+﻿@using PLD.Models
+@model CatalogosModels
+
+@if (Model != null && Model.ListaASignaciones.Count > 0)
+{
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"><i class="icon-th"></i></span>
+            <h5>Detalle Asignacion de permisos</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>UserName</th>
+                        <th>Nombre</th>
+                        <th>IdMenu</th>
+                        <th>Descripcion</th>
+                        <th>Modulo Padre</th>
+                        <th>Activo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.ListaASignaciones)
+                    {
+                        <tr class="gradeA">
+                            <td style="text-align:center;">@item.id</td>
+                            <td style="text-align:center;">@item.Username</td>
+                            <td style="text-align:center;">@item.Nombre_usuario</td>
+                            <td style="text-align:center;">@item.IdMenu</td>
+                            <td style="text-align:center;">@item.Nombre</td>
+                            <td style="text-align:center;">@item.Nombre_Padre</td>
+                            <td style="text-align:center;">@(item.Activo ? "SI" : "NO")</td>
+                            <td>
+                                @using (Ajax.BeginForm("BorrarAsignaciones", "Account", new AjaxOptions
+                                {
+                                    HttpMethod = "Post",
+                                    UpdateTargetId = "idModulos",
+                                    InsertionMode = InsertionMode.Replace
+                                }, new { @class = "form-horizontal", role = "form", id = "formBorra" }))
+                                {
+                                    <input type="text" name="IdUsuario" id="IdUsuario" class="span9" value="@item.id" style="display:none;" />
+                                    <input type="text" name="IdMenu" id="IdMenu" class="span9" value="@item.IdMenu" style="display:none;" />
+                                    <button type="submit" class="btn btn-danger" title="Detalle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"></path>
+                                        </svg> 
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+

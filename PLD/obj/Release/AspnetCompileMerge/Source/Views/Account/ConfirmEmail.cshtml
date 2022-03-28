@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Email Confirmado";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<section class="sectionEL text-center">
+    <img src="../Content/images/logo.svg" class="logoEmptyLayout" />
+    <div class="row p-25" style="color:rgba(255, 255, 255, 0.57)">
+        <h2 class="col-12">@ViewBag.Title.</h2>
+    </div>
+    <div>
+        <p style="color:rgba(255, 255, 255, 0.57)">
+            Gracias por confirmar tu correo electr&oacute;nico. Por favor da @Html.ActionLink("clic aquí para ingresar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "", style = "color:white" })
+        </p>
+    </div>
+</section>
+
+<style type="text/css">
+    body {
+        background-color: #CC2031;
+    }
+
+    .logoEmptyLayout {
+        width: 500px;
+    }
+
+    .sectionEL {
+        position: absolute;
+        /*background-color: white;*/
+        top: 25%;
+        left: 25%;
+        width: 50%;
+        height: 50%;
+        /*border-radius: 12%;*/
+    }
+</style>

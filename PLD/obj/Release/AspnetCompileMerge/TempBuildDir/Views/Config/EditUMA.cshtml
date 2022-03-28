@@ -1,0 +1,35 @@
+﻿@using PLD.Models
+@model  PLD.Models.DialogViewModel
+
+<div id="divEditUMA">
+
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">
+            ×
+        </button>
+        <h3>Editar Registro</h3>
+    </div>
+
+    @using (Ajax.BeginForm("RegisterConfig", "Config", new AjaxOptions
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "mdlAlert",
+        InsertionMode = InsertionMode.Replace
+    }, new { @class = "form-horizontal", role = "form", id = "formRegistrar" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-body">
+            <div class="control-group">
+                <label>Valor UMA</label>
+            </div>
+            <div class="control-group">
+                @Html.TextBoxFor(m => m.Valor, new { @class = "span12" })
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Guardar Cambios</button>
+        </div>
+
+    }
+</div>

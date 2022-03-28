@@ -1,0 +1,77 @@
+﻿@using PLD.Models
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+    ViewBag.Title = "Iniciar sesión";
+}
+
+<style>
+    .login div.bottom, .login div.top {
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+        background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        /*height: 100%;*/
+    }
+</style>
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg" id="bodyBackground">
+
+
+    <div class="container-fluid" style="width:auto;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="login-card card-block">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-center">
+                            <img src="@Url.Content("~/Content/img/logoTFSM.png")" height="100" width="220">
+                        </div>
+                        <h4 class="text-center txt-muted">
+                            Prevención de Lavado de Dinero
+                        </h4>
+                        <div class="col-sm-12">
+                            <div class="col-md-12" style="text-align:left;">
+                                @Html.LabelFor(m => m.Username, new { @class = "txtinput" })
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="col-sm-12" style="text-align:left;">
+                                @Html.LabelFor(m => m.Password, new { @class = "txtinput" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="md-form">
+                                <button type="submit" class="btn btn-pinterest btn-md waves-effect text-center col-sm-5">Acceder</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12 text-center">
+                            @Html.ActionLink("¿Olvidó su contraseña?", "ForgotPassword", new { @class = "text-muted p-l-5" })
+                            <div>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    div.validation-summary-errors ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+    }
+</style>
+

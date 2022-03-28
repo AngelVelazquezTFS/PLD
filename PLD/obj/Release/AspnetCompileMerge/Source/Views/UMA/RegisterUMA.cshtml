@@ -1,0 +1,79 @@
+﻿@using PLD.Models
+@model PLD.Models.UMAViewModels
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<style>
+    .form-horizontal .controls {
+        margin-left: 150px !important;
+    }
+
+    .form-horizontal .control-label {
+        width: 130px !important;
+    }
+</style>
+
+<div>
+    @using (Ajax.BeginForm("RegisterUMA", "UMA", new AjaxOptions
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "mdlAlert",
+        InsertionMode = InsertionMode.Replace
+    }, new { @class = "form-horizontal", role = "form", id = "formRegistrar" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>@(string.IsNullOrEmpty(ViewBag.TitleRegEdit) ? "Registrar UMA" : ViewBag.TitleRegEdit)</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <div class="control-group">
+                    @Html.LabelFor(m => m.UMA_DS_DES, new { @class = "control-label" })
+                    <div class="controls">
+                        @if (Model.UMA_ID_CVE == 0)
+                        {
+                            @Html.TextBoxFor(m => m.UMA_DS_DES, new { @class = "span11" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(m => m.UMA_DS_DES, new { @class = "span11", @readonly = "readonly" })
+                        }
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.UMA_NO_MTO, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.UMA_NO_MTO, new { @class = "span11" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.UMA_FE_INICIO, new { @class = "control-label" })
+                    <div class="controls">
+                        <div data-date="12-02-2012" class="input-append date datepicker">
+                            @Html.TextBoxFor(m => m.UMA_FE_INICIO, new { @class = "span11"})
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.UMA_FE_FIN, new { @class = "control-label" })
+                    <div class="controls">
+                        <div data-date="12-02-2012" class="input-append date datepicker">
+                            @Html.TextBoxFor(m => m.UMA_FE_FIN, new { @class = "span11" })
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-danger">@((Model.UMA_ID_CVE == 0) ? "Registrar" : "Guardar Cambios")</button>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+@Scripts.Render("~/bundles/jquerydate")

@@ -1,0 +1,137 @@
+﻿
+@using PLD.Models
+@model UMAViewModel
+
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-certificate"></i></span>
+        <h5>Umbral para las Configuraciones</h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Valor</th>
+                    <th>Usuario Modificación</th>
+                    <th>Activo</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody id="SetListUMA">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="myAlert" class="modal hide">
+</div>
+
+<div class="modal fade" id="ModalUMA">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3>Editar Registro</h3>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitFormUMA">
+                        <div class="control-group">
+                            <label>Valor UMA</label>
+                            @Html.HiddenFor(m => m.AML_ID_CVE, new { @id = "IdUMA" })
+                        </div>
+                        <div class="control-group">
+                            @Html.TextBoxFor(m => m.AML_NO_MONTO, new { @class = "span12", @id = "AML_NO_MONTO" })
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="form-group modal-footer">
+                <a href="#" class="btn btn-danger" id="SaveUMA">Guardar Cambio</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<script type="text/javascript">
+
+    $.get("/Config/ListaConfig", null, DataBind);
+    function DataBind(ListUMA) {
+        var SetData = $("#SetListUMA");
+        var ckeck = "";
+        for (var i = 0; i < ListUMA.length; i++) {
+            if (ListUMA[i].AML_FG_STATUS == 1) {
+                check = "<input type='checkbox' id='chkStatus' onchange='UpdateStatus(" + ListUMA[i].AML_ID_CVE + "," + ListUMA[i].PAR_CL_VALOR + ")' checked='checked' />";
+            }
+            else {
+                check = "<input type='checkbox' id='chkStatus' onchange='UpdateStatus(" + ListUMA[i].AML_ID_CVE + "," + ListUMA[i].PAR_CL_VALOR + ")' />";
+            }
+            var Data = "<tr class='gradeA'>" +
+                "<td style='text-align: center'>" + ListUMA[i].AML_DS_DES + "</td>" +
+                "<td style='text-align: center'>" + ListUMA[i].AML_NO_MONTO + "</td>" +
+                "<td style='text-align: center'>" + ListUMA[i].USR_CL_CVEMOD + "</td>" +
+                "<td style='text-align: center'>" + check + "</td>" +
+                "<td style='text-align: center'>" + "<a href='#' class='icon-edit' onclick='EditUMARecord(" + ListUMA[i].AML_ID_CVE + ")' ><span class='icon-edit'></span></a>" + "</td>" +
+                "</tr>";
+            SetData.append(Data);
+        }
+    }
+
+    function EditUMARecord(AML_ID_CVE) {
+        var url = "/Config/EditUMA?AML_ID_CVE=" + AML_ID_CVE;
+        $("#ModalTitle").html("Update Student Record");
+        $("#ModalUMA").modal();
+        $("#AML_NO_MONTO").focus();
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#AML_NO_MONTO").val(obj.AML_NO_MONTO);
+                $("#IdUMA").val(obj.AML_ID_CVE);
+            }
+        })
+    }
+
+    $("#SaveUMA").click(function () {
+        var data = $("#SubmitFormUMA").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/Config/SaveUMA",
+            data: data,
+            success: function (result) {
+                $("#SetListUMA").load(" #SetListUMA");
+                $.get("/Config/ListaConfig", null, DataBind);
+                alert("Registro Actualizado");
+                $("#ModalUMA").modal("hide");
+
+            }
+        })
+    })
+
+    var UpdateStatus = function (Id, valor) {
+        var idcheck = 0;
+        if ($('#chkStatus').is(":checked")) {
+            idcheck = 1;
+        }
+        var vcheck = $('#chkStatus').val();
+        $.ajax({
+            url: "@Url.Action("UpdEstatus", "Config")",
+            type: 'GET',
+            data: { Id: Id, valor: valor, idcheck: idcheck},
+            success: function (data) {
+                $('#myAlert').html(data);
+            }
+        });
+
+    }
+</script>
+
+@Scripts.Render("~/bundles/jquerymarutitable")
+
+
+
+

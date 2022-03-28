@@ -1,0 +1,126 @@
+﻿@using PLD.Models
+@model CatalogosModels
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-th"></i></span>
+        <h5>Lista Usuarios</h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table class="table table-bordered data-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Nombre</th>
+                    <th>Estatus</th>
+                    <th>Detalle</th>
+                    <th>Asignar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model != null)
+                {
+                    foreach (var item in Model.ListaUsuarios)
+                    {
+                <tr class="gradeA">
+                    <td style="text-align:center;">@item.Id</td>
+                    <td style="text-align:center;">@item.UserName</td>
+                    <td style="text-align:center;">@item.Nombre @item.Paterno</td>
+                    <td style="text-align:center;">
+                        @{switch (item.IdStatus)
+                            {
+                                case 1: <span>ACTIVO</span>
+                                    break;
+                                case 2: <span>INACTIVO</span>
+                                    break;
+                                default: <span></span>
+                                    break;
+                            }}
+                    </td>
+                    <td style="text-align:center;">
+                        @using (Ajax.BeginForm("ConsultAsignaciones", "Account", new AjaxOptions
+                        {
+                            HttpMethod = "Post",
+                            UpdateTargetId = "idModulos",
+                            InsertionMode = InsertionMode.Replace
+                        }, new { @class = "form-horizontal", role = "form", id = "formRegistrarr" }))
+                        {
+                            <input type="text" name="IdUsuario" id="IdUsuario" class="span9" value="@item.Id" style="display:none;" />
+                            <button type="submit" class="btn btn-danger" title="Detalle" data-original-title="Detalle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+                                </svg>
+                            </button>
+                        }
+                        </td>
+                    <td style="text-align:center;">
+                        <a href="#myModal" data-toggle="modal" data-id="@item.Id" data-username="@item.UserName" class="btn btn-danger" id="IdModalAsignar" title="Asignar Permiso">Asignar</a>
+                    </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="myModal" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button"> × </button>
+        <h3>Asignacion de Modulos</h3>
+    </div>
+    @using (Ajax.BeginForm("SaveAsignacionModulo", "Account", new AjaxOptions
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "idModulos",
+        InsertionMode = InsertionMode.Replace
+    }, new { @class = "form-horizontal", role = "form", id = "formRegistraModulo" }))
+    {
+        <div class="modal-body">
+            <div class="control-group">
+                <label class="control-label">Id Usuario :</label>
+                <div class="controls">
+                    <input type="text" class="span11" placeholder="Id Usuario" name="Idu" id="Idu" value="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">UserName :</label>
+                <div class="controls">
+                    <input type="text" class="span11" placeholder="UserName" name="UserName" id="UserName" value="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Modulo</label>
+
+                <div class="controls">
+                    <select id="idCombo" name="idCombo">
+                        @foreach (var item in Model.ListaMenus)
+                        {
+                        <option id="idCombo" name="idCombo" value="@item.IdMenu">@item.IdMenu - @item.Tipo - @item.Descripcion </option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn" href="#">Cancel</a>
+            <button type="submit" class="btn btn-danger" title="Detalle" id="IdGuardaAsignacion">
+               Guardar
+            </button>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(document).on("click", "#IdModalAsignar", function () {
+        var myBookId = $(this).data('id');
+        $(".modal-body #Idu").val(myBookId);
+
+        var username = $(this).data('username');
+        $(".modal-body #UserName").val(username);
+
+    });
+
+    $("#IdGuardaAsignacion").click(function () {
+       $("#myModal").modal("hide");
+    })
+
+</script>
