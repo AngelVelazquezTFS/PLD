@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6b3386cdfbb947ee8d7e14edac63491d" Name="Diagram1">
+      <Diagram DiagramId="6b3386cdfbb947ee8d7e14edac63491d" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="DB_Model.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_Model.AccesosWS" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_Model.AspNetRoles" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="DB_Model.Asignacion_Modulos" Width="1.5" PointX="13.25" PointY="5.375" />
         <AssociationConnector Association="DB_Model.FK__Asignacio__Id_Us__1E305893" />
         <AssociationConnector Association="DB_Model.FK__Asignacio__IdMen__1D3C345A" />
+        <EntityTypeShape EntityType="DB_Model.KARCHIVOS_MENSUALES" Width="1.5" PointX="6.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

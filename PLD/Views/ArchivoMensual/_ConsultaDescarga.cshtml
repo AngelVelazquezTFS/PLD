@@ -1,0 +1,169 @@
+﻿@using PLD.Models
+@model PLD.Models.ArchivoMensualModels
+
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="@Url.Action("Index","Home")" title="Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">Archivo Mensual</a>
+        <a href="#" class="current">Consulta y Descarga</a>
+    </div>
+    <h3><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> @ViewBag.Title</h3>
+</div>
+
+<style>
+    .form-horizontal .controls {
+        margin-left: 150px !important;
+    }
+
+    .form-horizontal .control-label {
+        width: 130px !important;
+    }
+
+    .alineabotones2{
+        float: right;
+        margin-top: -13%;
+        width: 50%;
+    }
+
+    .centrartexto {
+        text-align: center;
+    }
+</style>
+
+
+<div class="container" id="idContainer">
+    <h5>Histórico de Archivos Generados</h5>
+    <br />
+    <div class="row-fluid" style="width:50%">
+        <div class="col-md-6">
+            <div class="col-md-3">
+                <label>Fecha de Inicio:</label>
+            </div>
+            <div class="col-md-3">
+                <input input type="date" id="startdate" name="trip-start" min="2018-01-01" max="2022-03-31" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-3">
+                <label>Fecha de Fin:</label>
+            </div>
+            <div class="col-md-3">
+                <input input type="date" id="enddate" name="trip-start" min="2018-01-01" max="2022-03-31" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row-fluid alineabotones2">
+        <div class="col-md-1">
+            <div>
+                <label>Tipo de Aviso:</label>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div>
+                <select name="Aviso" id="idAviso">
+                    <option value="0">Todos</option>
+                    <option value="MPC">MPC</option>
+                    <option value="VEH">VEH</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="overflow-x:auto;">
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="overflow-x:auto;">
+                <div>
+                    <button type="button" id="idBuscar">BUSCAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12" style="margin-left:-5%">
+            <div class="overflow-x:auto;">
+                <div>
+                    <table class="table table-bordered data-table" width="100%" id="idTable">
+                        <thead>
+                            <tr>
+                                <th>Tipo Aviso</th>
+                                <th>Nombre Archivo</th>
+                                <th>Fecha Hora</th>
+                                <th>Folio</th>
+                                <th>Estatus Folio</th>
+                                <th>Usuario</th>
+                                <th>Descargar</th>
+                                <th>Captura Folio</th>
+                            </tr>
+                        </thead>
+                        <tbody style="align-content:center">
+                            @if (Model.Lista_Archivos != null && Model.Lista_Archivos.Count > 0)
+                            {
+                                foreach (var item in Model.Lista_Archivos)
+                                {
+                                    <tr class="gradeA">
+                                        <td style="text-align: center;" value="@item.ID_ARCHIVO" hidden="hidden" id="idArchivoM">@item.ID_ARCHIVO</td>
+                                        <td style="text-align: center;">@item.TIPO_AVISO</td>
+                                        <td style="text-align: center;">@item.NOMBRE_ARCHIVO</td>
+                                        <td style="text-align: center;">@item.FECHA_CREACION</td>
+                                        <td style="text-align: center;">@item.FOLIO</td>
+                                        <td style="text-align: center;">@item.ESTATUS_FOLIO</td>
+                                        <td style="text-align: center;">@item.USR_CL_CVE</td>
+                                        <td style="text-align: center;">
+                                            <a href="#" id="idName">
+                                                <i class="icon-download"></i>
+                                            </a>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <a href="#" id="idName">
+                                                <i class="icon-download"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        $("#idBuscar").on("click", function (e) {
+            debugger;
+            var startdate = $('#startdate').val();
+            var enddate = $('#enddate').val();
+            var tipoAviso = $('#idAviso').val();
+            e.preventDefault();
+            $.ajax({
+                url: '/ArchivoMensual/BuscarArchivos',
+                data: { startdate: startdate, enddate: enddate, tipoAviso: tipoAviso },
+                type: 'POST',
+                dataType: "multipart/form-data",
+            })
+                .complete(function (formData) {
+                    if (formData.success) {
+                        $("#content").html(formData.responseText);
+                    }
+                    else {
+                        console.log("entro 2");
+                    }
+                });
+        });
+
+    $("#idTable").on("click", ".icon-download", function (e) {
+        debugger;
+        e.preventDefault();
+        var idArchivoM = $(this).parent().parent().parent().children()[0].textContent;
+        window.location = '/ArchivoMensual/DescargaArchivo?idArchivoM=' + idArchivoM;
+    });
+</script>
+
+

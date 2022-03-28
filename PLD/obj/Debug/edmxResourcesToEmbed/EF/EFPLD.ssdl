@@ -131,6 +131,19 @@
     <Property Name="Users" Type="varchar" MaxLength="80" />
     <Property Name="Remarketing_Plan" Type="varchar" MaxLength="25" />
   </EntityType>
+  <EntityType Name="KARCHIVOS_MENSUALES">
+    <Key>
+      <PropertyRef Name="ID_ARCHIVO" />
+    </Key>
+    <Property Name="ID_ARCHIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE_ARCHIVO" Type="varchar" MaxLength="50" />
+    <Property Name="ARCHIVO" Type="nvarchar(max)" />
+    <Property Name="TIPO_AVISO" Type="varchar" MaxLength="50" />
+    <Property Name="FOLIO" Type="varchar" MaxLength="50" />
+    <Property Name="ESTATUS_FOLIO" Type="varchar" MaxLength="50" />
+    <Property Name="FECHA_CREACION" Type="datetime" />
+    <Property Name="USR_CL_CVE" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="KBITACORA_AML">
     <Key>
       <PropertyRef Name="BIT_FL_CVE" />
@@ -362,6 +375,15 @@
   <Function Name="sp_MenuUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUsuario" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_ObtieneArchivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FECHAINICIO" Type="varchar" Mode="In" />
+    <Parameter Name="FECHAFIN" Type="varchar" Mode="In" />
+    <Parameter Name="TIPOAVISO" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ObtieneDatos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FEC_EJECUCION" Type="varchar" Mode="In" />
+    <Parameter Name="UMA" Type="decimal" Mode="In" />
+  </Function>
   <Function Name="sp_PasswordDec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PasswordCifrado" Type="nvarchar(max)" Mode="In" />
   </Function>
@@ -378,6 +400,7 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CREMARK_PLANPISO_AML" EntityType="Self.CREMARK_PLANPISO_AML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KARCHIVOS_MENSUALES" EntityType="Self.KARCHIVOS_MENSUALES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KBITACORA_AML" EntityType="Self.KBITACORA_AML" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KCONFIG_AML" EntityType="Self.KCONFIG_AML" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />

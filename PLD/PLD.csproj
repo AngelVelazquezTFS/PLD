@@ -105,6 +105,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -188,6 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArchivoMensualController.cs" />
     <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Controllers\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -235,6 +237,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EFPLD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EF\KARCHIVOS_MENSUALES.cs">
+      <DependentUpon>EFPLD.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\KBITACORA_AML.cs">
       <DependentUpon>EFPLD.tt</DependentUpon>
     </Compile>
@@ -265,6 +270,12 @@
     <Compile Include="EF\sp_MenuUsuario_Result.cs">
       <DependentUpon>EFPLD.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\sp_ObtieneArchivos_Result.cs">
+      <DependentUpon>EFPLD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_ObtieneDatos_Result.cs">
+      <DependentUpon>EFPLD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,12 +288,17 @@
       <DependentUpon>202203040230334_AddUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ArchivoMensualModels.cs" />
     <Compile Include="Models\CatalogosModels.cs" />
     <Compile Include="Models\ConfigViewModels.cs" />
     <Compile Include="Models\DTO\AccountViewModels.cs" />
+    <Compile Include="Models\DTO\UtilidadXsdToXml.cs" />
+    <Compile Include="Models\DTO\ValidaXMLvsXSD.cs" />
+    <Compile Include="Models\DTO\XmlSchemaSetValidador.cs" />
     <Compile Include="Models\Enumerables.cs" />
     <Compile Include="Models\IdentityExt\CustomizePasswordValidation.cs" />
     <Compile Include="Models\Logs.cs" />
+    <Compile Include="Models\mcp.cs" />
     <Compile Include="Models\ModalViewModel.cs" />
     <Compile Include="Models\OperacionesModels.cs" />
     <Compile Include="Models\ResultadoModels.cs" />
@@ -728,6 +744,7 @@
     <Content Include="Content\img\icons\32\Thumbs.db" />
     <Content Include="Content\img\Thumbs.db" />
     <Content Include="Content\js\.listing" />
+    <Content Include="xmlCredito.xml" />
     <EntityDeploy Include="EF\EFPLD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EFPLD.Designer.cs</LastGenOutput>
@@ -736,6 +753,9 @@
       <DependentUpon>EFPLD.edmx</DependentUpon>
     </Content>
     <Content Include="plugins\gijgo\gijgo.min.js" />
+    <None Include="mpc.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1157,6 +1177,8 @@
     <Content Include="Views\Account\RegistrarAsignacion.cshtml" />
     <Content Include="Views\UMA\ListaUMA.cshtml" />
     <Content Include="Views\UMA\RegisterUMA.cshtml" />
+    <Content Include="Views\ArchivoMensual\_ConsultaDescarga.cshtml" />
+    <Content Include="Views\ArchivoMensual\_GeneraArchivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

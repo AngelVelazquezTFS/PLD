@@ -425,6 +425,16 @@
     <FunctionImport Name="sp_MenuUsuarios" ReturnType="Collection(DB_Model.sp_MenuUsuarios_Result)">
       <Parameter Name="idUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_ObtieneArchivos" ReturnType="Collection(DB_Model.sp_ObtieneArchivos_Result)">
+      <Parameter Name="FECHAINICIO" Mode="In" Type="String" />
+      <Parameter Name="FECHAFIN" Mode="In" Type="String" />
+      <Parameter Name="TIPOAVISO" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="KARCHIVOS_MENSUALES" EntityType="DB_Model.KARCHIVOS_MENSUALES" />
+    <FunctionImport Name="sp_ObtieneDatos" ReturnType="Collection(DB_Model.sp_ObtieneDatos_Result)">
+      <Parameter Name="FEC_EJECUCION" Mode="In" Type="String" />
+      <Parameter Name="UMA" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_MenuUsuario_Result">
     <Property Type="Int32" Name="IdMenu" Nullable="false" />
@@ -531,5 +541,68 @@
     <Property Type="Int32" Name="IdPadre" Nullable="false" />
     <Property Type="Byte" Name="Nivel" Nullable="true" />
     <Property Type="String" Name="Icon" Nullable="false" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="sp_ObtieneArchivos_Result">
+    <Property Type="String" Name="NOMBRE_ARCHIVO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ARCHIVO" Nullable="true" />
+    <Property Type="String" Name="TIPO_AVISO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FOLIO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ESTATUS_FOLIO" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FECHA_CREACION" Nullable="true" Precision="23" />
+    <Property Type="String" Name="USR_CL_CVE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="KARCHIVOS_MENSUALES">
+    <Key>
+      <PropertyRef Name="ID_ARCHIVO" />
+    </Key>
+    <Property Name="ID_ARCHIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_ARCHIVO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ARCHIVO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_AVISO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FOLIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ESTATUS_FOLIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA_CREACION" Type="DateTime" Precision="3" />
+    <Property Name="USR_CL_CVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="sp_ObtieneDatos_Result">
+    <Property Type="Int32" Name="ID_AML_EKIP" Nullable="false" />
+    <Property Type="String" Name="MESREPORTADO" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ID_REF_AVISO" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="PNA_FL_PERSONA" Nullable="false" />
+    <Property Type="Int32" Name="PNA_CL_PJURIDICA" Nullable="false" />
+    <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="A_PATERNO" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="A_MATERNO" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="F_NAC" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="RFC" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CURP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PAIS" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ACT_ECONOMICA" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="RAZON_SOCIAL" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="FEC_CONSTITUCION" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_RFC" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_PAIS" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_GIRO" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="PM_IDPER_APODERADO" Nullable="false" />
+    <Property Type="String" Name="PM_NOMBRE_REP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_APAT_REP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_AMAT_REP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_FNAC_REP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_RFC_REP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PM_CURP_REP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="N_COLONIA" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="N_CALLE" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="N_NUMEXT" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="N_NUMINT" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="N_CP" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="TEL_CVE_PAIS" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="TEL_NUMERO" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="FEC_OPERACION" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CP_OPERACION" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="FEC_DISPOSICION" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="INSTRUMENTO" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="MONEDA" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="MONTO_OPERACION" Nullable="false" MaxLength="1" />
   </ComplexType>
 </Schema>

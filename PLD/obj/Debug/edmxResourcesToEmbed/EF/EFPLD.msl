@@ -275,5 +275,77 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtieneArchivos" FunctionName="DB_Model.Store.sp_ObtieneArchivos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_Model.sp_ObtieneArchivos_Result">
+          <ScalarProperty Name="NOMBRE_ARCHIVO" ColumnName="NOMBRE_ARCHIVO" />
+          <ScalarProperty Name="ARCHIVO" ColumnName="ARCHIVO" />
+          <ScalarProperty Name="TIPO_AVISO" ColumnName="TIPO_AVISO" />
+          <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
+          <ScalarProperty Name="ESTATUS_FOLIO" ColumnName="ESTATUS_FOLIO" />
+          <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+          <ScalarProperty Name="USR_CL_CVE" ColumnName="USR_CL_CVE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="KARCHIVOS_MENSUALES">
+      <EntityTypeMapping TypeName="DB_Model.KARCHIVOS_MENSUALES">
+        <MappingFragment StoreEntitySet="KARCHIVOS_MENSUALES">
+          <ScalarProperty Name="USR_CL_CVE" ColumnName="USR_CL_CVE" />
+          <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+          <ScalarProperty Name="ESTATUS_FOLIO" ColumnName="ESTATUS_FOLIO" />
+          <ScalarProperty Name="FOLIO" ColumnName="FOLIO" />
+          <ScalarProperty Name="TIPO_AVISO" ColumnName="TIPO_AVISO" />
+          <ScalarProperty Name="ARCHIVO" ColumnName="ARCHIVO" />
+          <ScalarProperty Name="NOMBRE_ARCHIVO" ColumnName="NOMBRE_ARCHIVO" />
+          <ScalarProperty Name="ID_ARCHIVO" ColumnName="ID_ARCHIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtieneDatos" FunctionName="DB_Model.Store.sp_ObtieneDatos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_Model.sp_ObtieneDatos_Result">
+          <ScalarProperty Name="ID_AML_EKIP" ColumnName="ID_AML_EKIP" />
+          <ScalarProperty Name="MESREPORTADO" ColumnName="MESREPORTADO" />
+          <ScalarProperty Name="ID_REF_AVISO" ColumnName="ID_REF_AVISO" />
+          <ScalarProperty Name="PNA_FL_PERSONA" ColumnName="PNA_FL_PERSONA" />
+          <ScalarProperty Name="PNA_CL_PJURIDICA" ColumnName="PNA_CL_PJURIDICA" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="A_PATERNO" ColumnName="A_PATERNO" />
+          <ScalarProperty Name="A_MATERNO" ColumnName="A_MATERNO" />
+          <ScalarProperty Name="F_NAC" ColumnName="F_NAC" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="CURP" ColumnName="CURP" />
+          <ScalarProperty Name="PAIS" ColumnName="PAIS" />
+          <ScalarProperty Name="ACT_ECONOMICA" ColumnName="ACT_ECONOMICA" />
+          <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+          <ScalarProperty Name="FEC_CONSTITUCION" ColumnName="FEC_CONSTITUCION" />
+          <ScalarProperty Name="PM_RFC" ColumnName="PM_RFC" />
+          <ScalarProperty Name="PM_PAIS" ColumnName="PM_PAIS" />
+          <ScalarProperty Name="PM_GIRO" ColumnName="PM_GIRO" />
+          <ScalarProperty Name="PM_IDPER_APODERADO" ColumnName="PM_IDPER_APODERADO" />
+          <ScalarProperty Name="PM_NOMBRE_REP" ColumnName="PM_NOMBRE_REP" />
+          <ScalarProperty Name="PM_APAT_REP" ColumnName="PM_APAT_REP" />
+          <ScalarProperty Name="PM_AMAT_REP" ColumnName="PM_AMAT_REP" />
+          <ScalarProperty Name="PM_FNAC_REP" ColumnName="PM_FNAC_REP" />
+          <ScalarProperty Name="PM_RFC_REP" ColumnName="PM_RFC_REP" />
+          <ScalarProperty Name="PM_CURP_REP" ColumnName="PM_CURP_REP" />
+          <ScalarProperty Name="N_COLONIA" ColumnName="N_COLONIA" />
+          <ScalarProperty Name="N_CALLE" ColumnName="N_CALLE" />
+          <ScalarProperty Name="N_NUMEXT" ColumnName="N_NUMEXT" />
+          <ScalarProperty Name="N_NUMINT" ColumnName="N_NUMINT" />
+          <ScalarProperty Name="N_CP" ColumnName="N_CP" />
+          <ScalarProperty Name="TEL_CVE_PAIS" ColumnName="TEL_CVE_PAIS" />
+          <ScalarProperty Name="TEL_NUMERO" ColumnName="TEL_NUMERO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="FEC_OPERACION" ColumnName="FEC_OPERACION" />
+          <ScalarProperty Name="CP_OPERACION" ColumnName="CP_OPERACION" />
+          <ScalarProperty Name="FEC_DISPOSICION" ColumnName="FEC_DISPOSICION" />
+          <ScalarProperty Name="INSTRUMENTO" ColumnName="INSTRUMENTO" />
+          <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
+          <ScalarProperty Name="MONTO_OPERACION" ColumnName="MONTO_OPERACION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

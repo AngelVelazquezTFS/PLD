@@ -101,3 +101,4 @@ C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\obj\Debug\PLD.cspr
 C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\obj\Debug\PLD.csproj.CoreCompileInputs.cache
 C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\obj\Debug\PLD.dll
 C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\obj\Debug\PLD.pdb
+C:\Users\ex_tejal\OneDrive - TMNA\Documentos\Sistemas\PLD\PLD\obj\Debug\PLD.csproj.AssemblyReference.cache

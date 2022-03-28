@@ -42,6 +42,7 @@ namespace PLD.EF
         public virtual DbSet<KBITACORA_AML> KBITACORA_AML { get; set; }
         public virtual DbSet<KCONFIG_AML> KCONFIG_AML { get; set; }
         public virtual DbSet<Asignacion_Modulos> Asignacion_Modulos { get; set; }
+        public virtual DbSet<KARCHIVOS_MENSUALES> KARCHIVOS_MENSUALES { get; set; }
     
         public virtual ObjectResult<Nullable<bool>> sp_AccesoUsuario(Nullable<int> idUsuario, string accion, string controlador)
         {
@@ -124,6 +125,36 @@ namespace PLD.EF
                 new ObjectParameter("idUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MenuUsuarios_Result>("sp_MenuUsuarios", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_ObtieneArchivos_Result> sp_ObtieneArchivos(string fECHAINICIO, string fECHAFIN, string tIPOAVISO)
+        {
+            var fECHAINICIOParameter = fECHAINICIO != null ?
+                new ObjectParameter("FECHAINICIO", fECHAINICIO) :
+                new ObjectParameter("FECHAINICIO", typeof(string));
+    
+            var fECHAFINParameter = fECHAFIN != null ?
+                new ObjectParameter("FECHAFIN", fECHAFIN) :
+                new ObjectParameter("FECHAFIN", typeof(string));
+    
+            var tIPOAVISOParameter = tIPOAVISO != null ?
+                new ObjectParameter("TIPOAVISO", tIPOAVISO) :
+                new ObjectParameter("TIPOAVISO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ObtieneArchivos_Result>("sp_ObtieneArchivos", fECHAINICIOParameter, fECHAFINParameter, tIPOAVISOParameter);
+        }
+    
+        public virtual ObjectResult<sp_ObtieneDatos_Result> sp_ObtieneDatos(string fEC_EJECUCION, Nullable<decimal> uMA)
+        {
+            var fEC_EJECUCIONParameter = fEC_EJECUCION != null ?
+                new ObjectParameter("FEC_EJECUCION", fEC_EJECUCION) :
+                new ObjectParameter("FEC_EJECUCION", typeof(string));
+    
+            var uMAParameter = uMA.HasValue ?
+                new ObjectParameter("UMA", uMA) :
+                new ObjectParameter("UMA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ObtieneDatos_Result>("sp_ObtieneDatos", fEC_EJECUCIONParameter, uMAParameter);
         }
     }
 }
